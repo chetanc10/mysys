@@ -42,6 +42,9 @@ alias wrk='cd /home/vchn075/ChetaN/snips'
 
 ### Current Projects ###
 
+# XILU_iOVS #
+alias iovs='cd /home/vchn075/ChetaN/Projects/xilu_iovs'
+
 # FSLU_NVME #
 alias fslu='cd /media/vchn075/Hugos/fslu_nvme_sdk/ear5/fslu_nvme_sdk_ear5/Layerscape2-SDK-20150828-yocto/build_ls2085aissd_release/tmp/work/ls2085aissd-fsl-linux/linux-ls2-sdk/4.0-r0/git'
 alias sfslu='cd /home/vchn075/ChetaN/Projects/fslu_nvme'
