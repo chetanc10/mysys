@@ -1,0 +1,53 @@
+// find all .c and .h files recursively and do dos2unix on them 
+find . -type f -name *.[cChH] -print0 | xargs -0 dos2unix
+
+// find all pattern match files recursively and do dos2unix on them 
+find . -name "pattern" -delete
+
+// find percentage of battery power available
+upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "percentage"
+
+// find directory content total size
+du -hs path-of-directory
+
+// extract specific string without the text before and after that ( not totally tested )
+var=$(echo -n `<script-which-gives-text-with-STRING> | grep "before-STRING" | sed -e 's|before-STRING||; s|after-STRING$||'`)
+
+// get the public IP ur linux machine's identified as
+curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//'
+wget -qO- http://ipecho.net/plain ; echo
+curl ifconfig.me
+wget -qO- ifconfig.me/ip
+
+// get what wifi adapter is used
+lspci -nn | grep 0280
+
+// get what wifi APs are available (given without joining any AP)
+iwlist wlan0 scan | grep -E "SSID|Channel"
+
+// get total CPU memory (i.e. the RAM)
+sudo dmidecode -t 17 | grep "Size.*MB"
+
+// findn endianness of system
+lscpu | grep -i byte
+
+// get the number of threads limited in the current system
+cat /proc/sys/kernel/threads-max
+
+// get memory allocation trace of a program
+gcc -g 1.c -o o; export MALLOC_TRACE=/home/vchn075/ChetaN/Junk/scrap/11; ./o; mtrace ./o $MALLOC_TRACE
+
+// number base format conversions
+echo "obase=<required-number-base>; <input number>" | bc
+
+// write to other users
+write username [tty]
+
+// find verion or other string-like info from a binary
+strings a.out | grep <GCC, GLIB, etc>
+
+// find total number of required pattern-named files
+ls -l ./file.* 2>/dev/null | wc -l
+
+// get prio of pid
+awk '{print $18}' /proc/<pid>/stat

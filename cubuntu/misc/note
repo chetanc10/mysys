@@ -1,0 +1,4 @@
+It's a very simple script, but I think you get the idea and can easily adapt it to your needs. The path to the battery level might be different on your system. A little more portable would probably be to use something like acpi | cut -f2 -d, to obtain the battery level. This script can be scheduled by cron to run every minute. Edit your crontab with crontab -e and add the script:
+
+*/1 * * * * /home/me/usr/bin/low-battery-shutdown
+Another solution would be to install a desktop environment like Gnome or Xfce (and change your window manager to i3). Both mentioned destop environments feature power management daemons which take care of powering off the computer. But I assume you deliberately don't use them and are seeking for a more minimalistic solution.

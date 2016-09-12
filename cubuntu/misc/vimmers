@@ -1,0 +1,251 @@
+/* find number of occurrences of a pattern in a file */
+:%s/pattern//gn
+
+/* for replacing whole pattern over entire directory tree */
+:arg **/*.c | argadd **/*.h | argdo %s/\<pattern1\>/pattern2/ge | update
+:arg **/*.[ch] | argdo %s/\<pattern1\>/pattern2/ge | update
+
+/* remove unwanted whitespaces/tabspaces from the line */
+:s/\s\+/ /g
+cmd mode: diw
+
+/* remove spaces from start of line */
+:s/^\s*//
+
+/* remove spaces from end of line */
+:s/\s*$//
+
+/* remove last character from line */
+:s/. *$//
+
+/* indent in insert mode */
+Ctrl-t (or) >> (<num> and >> shall indent <num> lines from cursor line)
+/* unindent in insert mode indent */
+Ctrl-d (or) >> (<num> and << shall unindent <num> lines from cursor line)
+<num> ==
+
+/* indent multiple source code files */
+:arg **/*.[ch] | argdo silent execute "normal gg=G" | silent update
+:arg **/*.[cpp] | argadd **/*.hh | argdo silent execute "normal gg=G" | silent update
+
+/* Replace spaces with tabs */
+:set noexpandtab    " Use tabs, not spaces
+:%retab!            " Retabulate the whole file
+
+/* yank/delete block of lines */
+give "ma" at start line to mark start
+give "d'a"/"y'a" at end line to del/yank(copy) from "ma"rked line to end line
+
+/* add common text at start of each line */
+:s/^/foo
+
+/* add common text at End of line */
+:s/$/foo
+
+/* remove last number of characters in lines */
+:s/.\{<num>}$//
+
+/* remove first number of characters in lines */
+:s/^.\{<num>}//
+
+/* remove all lines that begin with a character */
+:g/^<char>/d
+
+/*remove lines with a pattern*/
+:g/<pattern>/d
+
+/* remove unwanted number of trailing words/patterns */
+/* " ." skips a column of words */
+:s/ .*//
+
+/* remove last word ( + spaces before word ) from line */
+:s/\s*\w\+\s*$//
+
+/* remove word between 2 spaces */
+:s/\s\+\w\+\s*//
+
+/* remove first words and space(including any first special chars<spec-char> in lines) */
+:s/<spec-char>\w\+\s*//
+
+/* move split window to right(circular)? */
+Ctrl-w r
+
+/* add new line(with a statement) after a end of line pattern in lines */
+:s/<pattern>$/<pattern>\r<statement pattern>
+
+/* comment block of lines */
+select by Ctrl-v (select columns as required)
+"shift-i" then "//" then "Esc"
+
+/* uncomment block of lines */
+select by Ctrl-v (select columns as required)
+x
+
+/* comment lines with a pattern */
+:g/pattern/norm I//  (I inserts // at start of line characters)
+
+/* display lines with a pattern in A FILE */
+METHOD-1 display just:
+:g/<pattern>
+METHOD-2 display in split window:
+:vimgrep /<pattern>/ (range)
+:copen or :cwindow
+
+/* add text at End Of Line with search pattern */
+:g/<pattern>/s/$/<mytext>
+
+/* Compress multiple occurrences of blank lines into a single blank line */
+:v/./,/./-j
+
+/* delete text after pattern in lines */
+:s/<pattern>.*/<pattern>
+
+/* delete word under cursor */
+bdw (b for move to word start, dw to del word)
+daw (to delete word and space before it)
+
+/* switch horizonsplit to vertical and vice-versa */
+Ctrl-w and shift-h for H2V
+Ctrl-w and shift-k for V2H
+
+/* delete statement/comment in a line and make it as empty line */
+Caps-D
+
+/* delete statement/comment in a line and make it as empty line and enter insert mode */
+Shift-c
+
+/*enter diff mode with 2 buffers opened in vim*/
+:windo diffthis
+/*exit diff mode inside vim*/
+:diffoff
+
+/*remove file when entire project folder opened in vim and NERDtree is installed*/
+1. cursor placed on file name.
+2. press m (quick fix window appears with add/modify/delete,etc options)
+3. press d
+
+/*scroll current cursor line to required position*/
+zz for center
+zt for top
+zb for bottom of page
+Ctrl-e  up one line
+Ctrl-y  down one line
+Ctrl-u  up ½ page
+Ctrl-d  down ½ page
+Ctrl-b  up one page
+Ctrl-f  down one page
+
+/*Positioning cursor*/
+shift-l for end-line on screen
+shift-m for mid-line on screen
+shift-h for top-line on screen
+g <line>for goto <line> 
+0(zero) for start of current line
+$	for end of current line
+
+/*move line(s) as required*/
+:m 12	 move current line to after line 12
+:m 0	 move current line to before first line
+:m $	 move current line to after last line
+:m 'a	 move current line to after line with mark a (see using marks)
+:m 'a-1	 move current line to before line with mark a
+:m '}-1	 move current line to the end of the current paragraph
+
+:5,7m 21	 move lines 5, 6 and 7 to after line 21
+:5,7m 0	 move lines 5, 6 and 7 to before first line
+:5,7m $	 move lines 5, 6 and 7 to after last line
+:.,.+4m 21	 move 5 lines starting at current line to after line 21
+:,+4m14	 same (. for current line is assumed)
+
+/*execute shell-specific commands(user alias cmds defined in separate files not supported)*/
+:!<command with options>
+
+/*have a shell session*/
+:sh (exit cmd to exit this shell and get back into vim session)
+
+/*delete words*/
+d$		-to EndOfLine
+d<n>w	-for <n> words
+d<n>e	-for <n> words and leave space at end
+
+/*change word(s) starting from cursor position and goto insert mode*/
+ce <newWord>
+c$ <newWord>- for change from cursor to EnfOfLine
+
+/*create file with some text in current file*/
+v for visual mode
+//move cursor till all required text is selected
+:w <filename>
+
+/*get whole text from other file and insert in current file*/
+:r <file>
+
+/*insert <word> number of times*/
+<num> i <word> <Esc> <Esc>
+
+/*Man page viewer*/
+shift+k while cursor is on <keyword>
+:Man <similar to shell man cmd>
+
+/*write and exit*/
+:wq
+shift+z+z
+
+/*make list of numbers in visual mode*/
+:I(I)
+
+/*know file type as dos/unix/others*/
+:set ff?
+
+/*fold(hide) selected lines in VISUAL mode*/
+zf
+/*delete fold*/
+zd
+
+/*remove from match-pattern till endOfLine*/
+:s/{pattern}.*//
+
+/*delete lines containing a pattern*/
+:g/pattern/d
+
+/*goto next function definition in current file*/
+forward  : ]]
+backward : [[
+
+/*dump shell command's outout in current file*/
+:.!<shell-command with options-required>
+
+/*reload currently open file*/
+:e %
+
+/*That will auto-indent the current code block*/
+={
+
+/*That will auto-indent the code till a }*/
+=}
+
+/*Resize all split windows*/
+<C-w>=
+
+/*Switch current split window position with previous split window's*/
+<C-w>x
+
+/*vim diffsplit*/
+:vert diffsplit [file2]
+
+/*udpate diff after few modifications on file*/
+:diffupdate
+
+/*jump between the diff lines*/
+[c - prev
+]c - next
+
+/*copy lines of diff between the 2 files*/
+do - from next file to current one
+dp - from current file to next one
+select using visual mode and get lines from other file - :'<,'>diffget
+select using visual mode and put lines to other file - :'<,'>diffput
+
+/*delete all empty lines*/
+:g/^$/d
+:v/./d
