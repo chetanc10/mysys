@@ -51,3 +51,16 @@ ls -l ./file.* 2>/dev/null | wc -l
 
 // get prio of pid
 awk '{print $18}' /proc/<pid>/stat
+
+// get last word from a heterogenous string, coming after a given symbol
+echo "/home/vchn075/ChetaN/Junk/scrap/test/c1x" | awk -F/ '{print $NF}'
+
+// cut from mth character to nth character in a string
+echo 'MOTEST' | cut -c2-5
+
+// conversion between lower<->upper case bash
+echo $VAR_NAME | tr '[:lower:]' '[:upper:]'
+echo $str | awk '{print toupper($0)}'
+
+echo $VAR_NAME | tr '[:upper:]' '[:lower:]'
+echo $str | awk '{print tolower($0)}'
