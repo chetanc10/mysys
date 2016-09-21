@@ -64,3 +64,6 @@ echo $str | awk '{print toupper($0)}'
 
 echo $VAR_NAME | tr '[:upper:]' '[:lower:]'
 echo $str | awk '{print tolower($0)}'
+
+// disable x-session during bootup
+chmod -x /usr/bin/Xorg
