@@ -1,11 +1,10 @@
 #!/bin/bash
 # function Extract for common file formats
 
-function extract {
- if [ -z "$1" ]; then
+if [ -z "$1" ]; then
     # display usage if no parameters given
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
- else
+else
     if [ -f "$1" ] ; then
         NAME=${1%.*}
         #mkdir $NAME && cd $NAME
@@ -31,4 +30,3 @@ function extract {
         echo "'$1' - file does not exist"
     fi
 fi
-}

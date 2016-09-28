@@ -2,8 +2,7 @@
 
 # Kill all processes which are not to be run in low power mode (lpmode)
 
-function lpmode {
 echo "killing processes.."
-	killall artha 2>/dev/null && echo "artha"
-	#killall dropbox 2>/dev/null && echo "dropbox"
-}
+killall artha 2>/dev/null && echo "artha"
+killall tomboy 2>/dev/null && echo "tomboy"
+#killall dropbox 2>/dev/null && echo "dropbox"

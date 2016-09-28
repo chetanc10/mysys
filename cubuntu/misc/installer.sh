@@ -15,15 +15,4 @@ fi
    ## or do whatever with individual element of the array
 #done
 
-#openssh-server
-#openssh-client
-#vim
-#emacs
-#ssh
-#subversion
-#nmap
-#wireshark
-#wifi-radar
-#libusb-1.0-0-dev
-#synapse
-#gitk
+#sudo apt-get install vim tomboy ssh subversion nmap wifi-radar libusb-1.0-0-dev synapse openssh-server openssh-client unity-tweak-tool exuberant-ctags cscope curl

@@ -11,7 +11,7 @@
 # Just having Mount Directory name and partition name same for easy map
 # So, /media/vchn075/sdaxx is just a mount directory, not actual fs partition
 
-declare -A reqparts=( ["sda6"]="/dev/sda6" ["sda7"]="/dev/sda7" ["sda10"]="/dev/sda10" )
+declare -A reqparts=( ["c1"]="/dev/sda3" ["c2"]="/dev/sda4" )
 
 [[ "$0" == *"cmnts.sh"* ]] && echo "Error: Can't use the script directly!" && exit -1;
 
