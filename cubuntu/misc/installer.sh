@@ -1,18 +1,37 @@
 #!/bin/bash
-echo "Want to install openssh-server?"
+
+declare -a c10utils=(vim git subversion skype meld vlc ssh tomboy cscope exuberant-ctags nmap openssh-server openssh-client gparted unity-tweak-tool synaptic curl wifi-radar wireshark)
+
+declare -a c10libs=(libpcap-dev)
+
+echo "Installer program for basic system utilities and libraries. Enter x during any stage of question from me to kill me"
+
+for i in "${c10utils[@]}"
+do
+	echo -ne "\n\n****Install $i ? (y|n): "
+	read answer
+	[[ "$answer" == "n" ]] && continue;
+	[[ "$answer" == "x" ]] && exit 0;
+	if [ "$i" == "skype" ]; then
+		echo "Skype installation: Do it yourself for now"
+		continue;
+	fi
+	echo -e "Installing $i"
+	sudo apt-get install $i
+done
+
+echo -ne "\nProceeed to lib Installations? (y|n): "
 read answer
-if [ "$read" == "yes" ]; then
-	echo "u said yes!"
-fi
+[[ "$answer" != "y" ]] && exit 0;
+[[ "$answer" == "x" ]] && exit 0;
 
-## declare an array variable
-##declare -a arr=("element1" "element2" "element3")
-#
-## now loop through the above array
-#for i in "${arr[@]}"
-#do
-   #echo "$i"
-   ## or do whatever with individual element of the array
-#done
+for i in "${c10libs[@]}"
+do
+	echo -ne "\n\n****Install $i ? (y|n): "
+	read answer
+	[[ "$answer" == "n" ]] && continue;
+	[[ "$answer" == "x" ]] && exit 0;
+	echo -e "Installing $i"
+	sudo apt-get install $i
+done
 
-#sudo apt-get install vim tomboy ssh subversion nmap wifi-radar libusb-1.0-0-dev synapse openssh-server openssh-client unity-tweak-tool exuberant-ctags cscope curl
