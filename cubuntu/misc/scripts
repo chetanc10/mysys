@@ -1,7 +1,7 @@
 // find all .c and .h files recursively and do dos2unix on them 
 find . -type f -name *.[cChH] -print0 | xargs -0 dos2unix
 
-// find all pattern match files recursively and do dos2unix on them 
+// find all pattern match files recursively and delete them 
 find . -name "pattern" -delete
 
 // find percentage of battery power available

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -a c10utils=(vim git subversion skype meld vlc ssh tomboy cscope exuberant-ctags nmap openssh-server openssh-client gparted unity-tweak-tool synaptic curl wifi-radar wireshark)
+declare -a c10utils=(vim git at subversion skype meld vlc ssh tomboy cscope exuberant-ctags nmap openssh-server openssh-client gparted unity-tweak-tool synaptic curl wifi-radar wireshark)
 
 declare -a c10libs=(libpcap-dev)
 
