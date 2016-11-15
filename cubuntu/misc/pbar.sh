@@ -11,14 +11,15 @@ fi
 FALSE=0
 TRUE=1
 
-ps aux | grep $name | grep -v grep | grep -v pbar > /dev/null
-#ps aux | grep $name | grep -v grep | grep -v pbar
+pgrep $name > /dev/null
+#ps aux | grep $name | grep -v grep | grep -v pbar > /dev/null
 terminated=$?
 if [ "$terminated" == "$FALSE" ]; then
-	#echo Now we wait!
+	echo Waiting for $name to finish!
 	while [ 1 ]
 	do
-		ps aux | grep $name | grep -v grep | grep -v pbar > /dev/null
+		#ps aux | grep $name | grep -v grep | grep -v pbar > /dev/null
+		pgrep $name > /dev/null
 		terminated=$?
 		if [ "$terminated" == "$TRUE" ]; then
 			break
