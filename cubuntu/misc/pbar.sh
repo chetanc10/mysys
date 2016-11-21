@@ -11,15 +11,28 @@ fi
 FALSE=0
 TRUE=1
 
-pgrep $name > /dev/null
-#ps aux | grep $name | grep -v grep | grep -v pbar > /dev/null
+if [ "$2" == "-v" ]; then
+	andprintto=""
+else
+	echo "devnull"
+	andprintto="> /dev/null"
+fi
+
+pgrep $name $andprintout
+ps aux | grep $name | grep -v grep | grep -v pbar $andprintout
 terminated=$?
 if [ "$terminated" == "$FALSE" ]; then
-	echo Waiting for $name to finish!
+	ps aux | grep $name | grep -v grep | grep -v pbar
+	echo -n "Shall I proceed to wait? [y|n]: "
+	read yes
+	if [ "$yes" != "y" ]; then
+		exit 0
+	fi
+	#echo Waiting for $name to finish!
 	while [ 1 ]
 	do
-		#ps aux | grep $name | grep -v grep | grep -v pbar > /dev/null
-		pgrep $name > /dev/null
+		#ps aux | grep $name | grep -v grep | grep -v pbar $andprintout
+		pgrep $name $andprintout
 		terminated=$?
 		if [ "$terminated" == "$TRUE" ]; then
 			break
