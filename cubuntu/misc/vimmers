@@ -208,6 +208,9 @@ zd
 /*delete lines containing a pattern*/
 :g/pattern/d
 
+/*find number of pattern matches in file*/
+:%s/pattern//gn
+
 /*goto next function definition in current file*/
 forward  : ]]
 backward : [[
