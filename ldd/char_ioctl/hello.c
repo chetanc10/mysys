@@ -104,7 +104,7 @@ static int __init hello_init(void)
 		return err;
 	}
 
-	printk (KERN_INFO "Registered\n");
+	printk (KERN_INFO "Registered with %d\n", major);
 
     return 0;    // Non-zero return means that the module couldn't be loaded.
 }
