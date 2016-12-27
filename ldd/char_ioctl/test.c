@@ -21,7 +21,7 @@ int main ()
 		return -1;
 	}
 
-#if 0
+#if 1
 	if (4 != read (fd, &n, 4)) {
 		perror ("/dev/hello");
 		close (fd);
