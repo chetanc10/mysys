@@ -9,29 +9,30 @@ const char *usage_str = "Usage: ./optimus <test> <type> [additional-args]\n" \
 						 "\tOptions: --circinc <--cmp | --bits | --if>\n" \
 						 "--\n";
 
-static inline void circinc_cmp (uint32_t var, uint32_t lmt)
+static inline uint32_t circinc_cmp (uint32_t var, uint32_t lmt)
 {
-	var = ((var + 1) == lmt) ? 0 : var + 1;
+	return ((var + 1) == lmt) ? 0 : var + 1;
 }
 
-static inline void circinc_bits (uint32_t var, uint32_t lmt_mask)
+static inline uint32_t circinc_bits (uint32_t var, uint32_t lmt_mask)
 {
-	var = (var + 1) & (lmt_mask);
+	return (var + 1) & (lmt_mask);
 }
 
-static inline void circinc_if (uint32_t var, uint32_t lmt)
+static inline uint32_t circinc_if (uint32_t var, uint32_t lmt)
 {
 	var++;
 	if (var == lmt) var = 0;
+	return var;
 }
 
 static inline int test_circinc (char **argv)
 {
-    uint32_t i, j, k = 10;
+    uint32_t i = 0, j, k = 10;
     uint32_t lmt = 10;
 	clock_t start, end;
 	double time_spent[10], total_time_spent = 0;
-	void (*func) (uint32_t, uint32_t);
+	uint32_t (*func) (uint32_t, uint32_t);
 
 	if (!strncmp ("--cmp", argv[2])) {
 		func = circinc_cmp;
@@ -47,7 +48,7 @@ static inline int test_circinc (char **argv)
 	while (k--) {
 		start = clock ();
 		for (j = 0; j < 100000000; j++)
-			func (i, lmt);
+			i = func (i, lmt);
 		end = clock ();
 		time_spent[k] = (end - start);
 	}
