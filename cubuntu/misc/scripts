@@ -67,3 +67,7 @@ echo $str | awk '{print tolower($0)}'
 
 // disable x-session during bootup
 chmod -x /usr/bin/Xorg
+
+// top for particular process
+top -p $(pgrep -d , processname)
+
