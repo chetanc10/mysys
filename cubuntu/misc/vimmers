@@ -18,6 +18,12 @@ cmd mode: diw
 /* remove last character from line */
 :s/. *$//
 
+/* advance replacement with func calls and respective args */
+/*func1(arg1); to be made as func_1 (argv1, extra_args) */
+:s/oldfunc\(.*\w\)/newfunc \1, XML_ERR/g
+/*func1 (arg1); to be made as func_1 (argv1, extra_args) */
+:s/oldfunc \(.*\w\)/newfunc \1, XML_ERR/g
+
 /* indent in insert mode */
 Ctrl-t (or) >> (<num> and >> shall indent <num> lines from cursor line)
 /* unindent in insert mode indent */
