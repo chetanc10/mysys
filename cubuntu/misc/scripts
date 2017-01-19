@@ -71,3 +71,5 @@ chmod -x /usr/bin/Xorg
 // top for particular process
 top -p $(pgrep -d , processname)
 
+// free cached pages after closing a memory-monster application
+sync && echo 1 > /proc/sys/vm/drop_caches && sync && echo 2 > /proc/sys/vm/drop_caches && sync && echo 3 > /proc/sys/vm/drop_caches
