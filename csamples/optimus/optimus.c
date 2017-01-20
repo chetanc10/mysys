@@ -5,8 +5,8 @@
 
 #include "optimus.h"
 
-const char *usage_str = "Usage: ./optimus <test> <type> [additional-args]\n" \
-						 "\tOptions: --circinc <--cmp | --bits | --if>\n" \
+const char *usage_str = "Usage: ./optimus <test> [additional-args]\n" \
+						 "\tOptions: --circinc\n" \
 						 "--\n";
 
 static inline uint32_t circinc_cmp (uint32_t var, uint32_t lmt)
@@ -26,37 +26,49 @@ static inline uint32_t circinc_if (uint32_t var, uint32_t lmt)
 	return var;
 }
 
+static inline uint32_t circinc_mod (uint32_t var, uint32_t lmt)
+{
+	return ++var % lmt;
+}
+
 static inline int test_circinc (char **argv)
 {
-    uint32_t i = 0, j, k = 10;
+	typedef uint32_t (*circinc_t) (uint32_t, uint32_t);
+	struct circinc_mode {
+		char type[20];
+		circinc_t func;
+	};
+	struct circinc_mode circinc_modes[] = {
+		{"circinc_ift", circinc_if},
+		{"circinc_cmp", circinc_cmp},
+		{"circinc_bit", circinc_bits},
+		{"circinc_mod", circinc_mod},
+	};
+    uint32_t i = 0, j, k = 10, fidx = 0;
     uint32_t lmt = 10;
+	char *type;
 	clock_t start, end;
 	double time_spent[10], total_time_spent = 0;
-	uint32_t (*func) (uint32_t, uint32_t);
+	circinc_t func;
 
-	if (!strncmp ("--cmp", argv[2])) {
-		func = circinc_cmp;
-	} else if (!strncmp ("--bits", argv[2])) {
-		func = circinc_bits;
-		lmt--;
-	} else if (!strncmp ("--if", argv[2])) {
-		func = circinc_if;
-	} else {
-		return -3;
+	for (fidx = 0; \
+			fidx < sizeof (circinc_modes) / sizeof (*circinc_modes); \
+			fidx++) {
+		func = circinc_modes[fidx].func;
+		type = circinc_modes[fidx].type;
+		i = 0;
+		for (k = 0; k < 10; k++) {
+			start = clock ();
+			for (j = 0; j < 10000000; j++)
+				i = func (i, lmt);
+			end = clock ();
+			time_spent[k] = (end - start);
+		}
+		for (k = 0; k < 10; k++)
+			total_time_spent += time_spent[k];
+		printf ("clocks taken for test_circinc with %d[%s]: %f\n", \
+				fidx, type, total_time_spent/10);
 	}
-
-	while (k--) {
-		start = clock ();
-		for (j = 0; j < 100000000; j++)
-			i = func (i, lmt);
-		end = clock ();
-		time_spent[k] = (end - start);
-	}
-
-	for (k = 0; k < 10; k++)
-		total_time_spent += time_spent[k];
-
-	printf ("clocks taken for test_circinc with %s: %f\n", argv[2], total_time_spent/10);
 
 	return 0;
 }
