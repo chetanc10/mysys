@@ -31,7 +31,7 @@ int test_ifcond (uint8_t argc, char **argv)
 	uint32_t i, j, fidx;
 	char *type;
 	clock_t start, end;
-	double time_spent[10], total_time_spent = 0;
+	double time_spent[10], total_time_spent;
 	ifcond_func_t func;
 	int x = 3, y = 8, lmt = 18;
 	int in_range;
@@ -46,6 +46,7 @@ int test_ifcond (uint8_t argc, char **argv)
 			end = clock ();
 			time_spent[j] = (end - start);
 		}
+		total_time_spent = 0;
 		for (j = 0; j < 10; j++)
 			total_time_spent += time_spent[j];
 		printf ("clocks taken for [%s]: %f.. and it is%sin range\n", \
