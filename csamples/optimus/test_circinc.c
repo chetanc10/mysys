@@ -47,13 +47,12 @@ int test_circinc (uint8_t argc, char **argv)
 		return -3;
 	}
 
-	x = atoi (argv[0]);
 	lmt = atoi (argv[1]);
 
 	for (fidx = 0; fidx < SIZEOF_ARRAY (circinc_modes); fidx++) {
 		func = circinc_modes[fidx].func;
 		type = circinc_modes[fidx].type;
-		x = 0;
+		x = atoi (argv[0]);
 		for (j = 0; j < 10; j++) {
 			start = clock ();
 			for (i = 0; i < 10000000; i++)

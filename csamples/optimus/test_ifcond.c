@@ -33,7 +33,7 @@ int test_ifcond (uint8_t argc, char **argv)
 	clock_t start, end;
 	double time_spent[10], total_time_spent = 0;
 	ifcond_func_t func;
-	int x, y, lmt;
+	int x = 3, y = 8, lmt = 18;
 	int in_range;
 
 	for (fidx = 0; fidx < SIZEOF_ARRAY (ifcond_modes); fidx++) {
