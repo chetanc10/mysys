@@ -6,6 +6,7 @@ const char *usage_str = "Usage: ./optimus <test> [additional-args]\n" \
 						 "\tcircinc <start> <wrap-limit>\n" \
 						 "\tminmax <num> <min> <max>\n" \
 						 "\tifcond\n" \
+						 "\tintalign\n" \
 						 ;
 
 typedef int (*test_cb_t)(uint8_t argc, char **argv);
@@ -23,6 +24,7 @@ int main (int argc, char **argv)
 		{"test_circinc", test_circinc},
 		{"test_minmax", test_minmax},
 		{"test_ifcond", test_ifcond},
+		{"test_intalign", test_intalign},
 	};
 
 	if (argc < 2) {
