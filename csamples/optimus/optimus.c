@@ -5,7 +5,7 @@ const char *usage_str = "Usage: ./optimus <test> [additional-args]\n" \
 						 "Options:\n" \
 						 "\tcircinc <start> <wrap-limit>\n" \
 						 "\tminmax <num> <min> <max>\n" \
-						 "\tifcond\n" \
+						 "\tsigunsig\n" \
 						 "\tintalign\n" \
 						 ;
 
@@ -23,7 +23,7 @@ int main (int argc, char **argv)
 	test_ctxt_t tests[] = {
 		{"test_circinc", test_circinc},
 		{"test_minmax", test_minmax},
-		{"test_ifcond", test_ifcond},
+		{"test_sigunsig", test_sigunsig},
 		{"test_intalign", test_intalign},
 	};
 

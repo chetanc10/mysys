@@ -11,7 +11,7 @@
 
 int test_circinc (uint8_t argc, char **argv);
 int test_minmax (uint8_t argc, char **argv);
-int test_ifcond (uint8_t argc, char **argv);
+int test_sigunsig (uint8_t argc, char **argv);
 int test_intalign (uint8_t argc, char **argv);
 
 #endif /*__OPTIMUS_H*/
