@@ -1,7 +1,12 @@
 
 #include "optimus.h"
 
-static inline uint32_t circinc_cmp (uint32_t x, uint32_t lmt)
+static inline uint32_t circinc_cm1 (uint32_t x, uint32_t lmt)
+{
+	return ((++x) == lmt) ? 0 : x;
+}
+
+static inline uint32_t circinc_cm2 (uint32_t x, uint32_t lmt)
 {
 	return ((x + 1) == lmt) ? 0 : x + 1;
 }
@@ -32,7 +37,8 @@ int test_circinc (uint8_t argc, char **argv)
 	};
 	struct circinc_mode circinc_modes[] = {
 		{"circinc_ift", circinc_if},
-		{"circinc_cmp", circinc_cmp},
+		{"circinc_cm1", circinc_cm1},
+		{"circinc_cm2", circinc_cm2},
 		{"circinc_bit", circinc_bits},
 		{"circinc_mod", circinc_mod},
 	};
