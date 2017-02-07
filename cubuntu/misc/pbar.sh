@@ -3,7 +3,7 @@
 name=$1
 
 if [ "$name" == "" ]; then
-	echo "Usage: pbar <process name>"
+	echo "Usage: pbar.sh <process name>"
 	echo "process name should be as is given in cmd in terminal"
 	exit
 fi
@@ -35,9 +35,7 @@ if [ "$terminated" == "$FALSE" ]; then
 	done
 	#notify-send "process from $name completed"
 	zenity --info --text "process from $name completed!" &
-	paplay /usr/share/sounds/ubuntu/stereo/phone-incoming-call.ogg
-	paplay /usr/share/sounds/ubuntu/stereo/phone-incoming-call.ogg
-	paplay /usr/share/sounds/ubuntu/stereo/phone-incoming-call.ogg
+	paplay /usr/share/sounds/ubuntu/stereo/phone-incoming-call.ogg &
 else
 	echo "$name: Process not found!"
 fi
