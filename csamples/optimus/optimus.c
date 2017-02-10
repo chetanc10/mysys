@@ -9,6 +9,7 @@ const char *usage_str = "Usage: ./optimus <test> [additional-args]\n" \
 						 "\tintalign\n" \
 						 "\tremainder <num> <divider>\n" \
 						 "\tvassign\n" \
+						 "\tfunccall\n" \
 						 ;
 
 typedef int (*test_cb_t)(uint8_t argc, char **argv);
@@ -29,6 +30,7 @@ int main (int argc, char **argv)
 		{"test_intalign", test_intalign},
 		{"test_remainder", test_remainder},
 		{"test_vassign", test_vassign},
+		{"test_funccall", test_funccall},
 	};
 
 	if (argc < 2) {
