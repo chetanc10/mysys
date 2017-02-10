@@ -73,3 +73,7 @@ top -p $(pgrep -d , processname)
 
 // free cached pages after closing a memory-monster application
 sync && echo 1 > /proc/sys/vm/drop_caches && sync && echo 2 > /proc/sys/vm/drop_caches && sync && echo 3 > /proc/sys/vm/drop_caches
+
+// rename file by replacing spaces in the file-name by another character
+rename 's/ /<char>/g' <file>
+
