@@ -10,7 +10,6 @@ void func1 (uint32_t n)
 	n << 1;
 	n << 1;
 	n << 1;
-	printf ("%u\r", n & 1);
 }
 
 void func2 (uint32_t n)
@@ -18,7 +17,6 @@ void func2 (uint32_t n)
 	n << 2;
 	n << 2;
 	n << 2;
-	printf ("%u\r", n & 2);
 }
 
 void func3 (uint32_t n)
@@ -26,7 +24,6 @@ void func3 (uint32_t n)
 	n << 3;
 	n << 3;
 	n << 3;
-	printf ("%u\r", n & 3);
 }
 
 void func4 (uint32_t n)
@@ -34,7 +31,6 @@ void func4 (uint32_t n)
 	n << 4;
 	n << 4;
 	n << 4;
-	printf ("%u\r", n & 4);
 }
 
 void func5 (uint32_t n)
@@ -42,7 +38,6 @@ void func5 (uint32_t n)
 	n << 5;
 	n << 5;
 	n << 5;
-	printf ("%u\r", n & 5);
 }
 
 func_t farr[5] = {
@@ -98,7 +93,7 @@ int test_funccall (uint8_t argc, char **argv)
 		type = funccall_modes[fidx].type;
 		for (j = 0; j < 10; j++) {
 			start = clock ();
-			for (i = 0; i < 10000; i++)
+			for (i = 0; i < 1000000; i++)
 				func (4);
 			end = clock ();
 			time_spent[j] = (end - start);

@@ -1,7 +1,13 @@
+
+/**
+ * Compilation : gcc ex_addr2line
+ * Run         : ./a.out <number-of-func-calls>
+ * Status      : Yet to clarify some things
+ */
+
 #include <execinfo.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 #define BT_BUF_SIZE 100
 
@@ -36,15 +42,15 @@ void myfunc3(void)
 	/* The call backtrace_symbols_fd(buffer, nptrs, STDOUT_FILENO)
 	   would produce similar output to the following: */
 
-	strings = backtrace_symbols(buffer, nptrs);
+	strings = (void **)backtrace_symbols(buffer, nptrs);
 	if (strings == NULL) {
 		perror("backtrace_symbols");
 		exit(EXIT_FAILURE);
 	}
 
 	for (j = 0; j < nptrs - 2; j++) {
-#if 0
-		printf("%s\n", strings[j]);
+#if 1
+		printf("%s\n", (char *)strings[j]);
 		if (0)
 		{
 			char ch;
@@ -52,15 +58,7 @@ void myfunc3(void)
 			scanf (" %c", &ch);
 		}
 #else
-#if 0
-		printf("%s\n", strings[j]);
-		{
-			char hstr[512];
-			sprintf (hstr, "addr2line -f -p -e %s %p", "a.out", buffer[j]);
-			/*printf ("do: %s\n", hstr);*/
-			system (hstr);
-		}
-#endif
+		/*printf("%s\n", (char *)strings[j]);*/
 		if (addr2line (pname, buffer[j])) {
 			printf ("couldn't get human readable lines from backtrace\n");
 		}

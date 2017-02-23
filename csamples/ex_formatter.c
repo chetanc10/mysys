@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -5,8 +6,10 @@
 
 int main(int argc, char **argv)
 {
-	if(argc != 3)
-		return;
+	if (argc != 3) {
+		printf ("Usage: ./a.out <format - x|c|i|u> <input-num-or-char>")
+		return -1;
+	}
 
 	char f1 = argv[1][0];
 	int32_t i32;
