@@ -77,3 +77,5 @@ sync && echo 1 > /proc/sys/vm/drop_caches && sync && echo 2 > /proc/sys/vm/drop_
 // rename file by replacing spaces in the file-name by another character
 rename 's/ /<char>/g' <file>
 
+// rename file by removing '[word]' (enclosed between [])
+rename 's/\[.*\]//g' <file>
