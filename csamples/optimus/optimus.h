@@ -16,5 +16,7 @@ int test_intalign (uint8_t argc, char **argv);
 int test_remainder (uint8_t argc, char **argv);
 int test_vassign (uint8_t argc, char **argv);
 int test_funccall (uint8_t argc, char **argv);
+int test_codeskip (uint8_t argc, char **argv);
+int test_exitloop (uint8_t argc, char **argv);
 
 #endif /*__OPTIMUS_H*/
