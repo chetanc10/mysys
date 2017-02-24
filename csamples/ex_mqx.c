@@ -1,3 +1,8 @@
+
+/**
+ * Compilation: gcc ex_mqx.c -lrt
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -23,7 +28,7 @@ static mqd_t serverUp (void) {
 	}
 
 	memset (&mqAttr, 0, sizeof (struct mq_attr));
-	mqAttr.mq_maxmsg = 32766;
+	mqAttr.mq_maxmsg = 8192;
 	mqAttr.mq_msgsize = 4;
 	/*svrHndl = mq_open (MQNAME, O_RDWR|O_CREAT);*/
 	svrHndl = mq_open (MQNAME, O_RDWR|O_CREAT, S_IWUSR|S_IRUSR, &mqAttr);

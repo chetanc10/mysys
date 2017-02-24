@@ -8,6 +8,7 @@ static inline int clz32(uint32_t val)
 #if 0//QEMU_GNUC_PREREQ(3, 4)
 	return val ? __builtin_clz(val) : 32;
 #else
+	/*may need some study -TODO*/
 	/* Binary search for the leading one bit.  */
 	int cnt = 0;
 
@@ -34,14 +35,17 @@ static inline int clz32(uint32_t val)
 	if (!(val & 0x80000000U)) {
 		cnt++;
 	}
-	return cnt;
+	return 32-cnt-1;
 #endif
 }
 
 int main(uint8_t argc, char **argv)
 {
 	if (argc == 2)
-		printf ("%d\r\n", clz32(atoi(argv[1])));
+		printf ("leading bit set @ %d\r\n", clz32(atoi(argv[1])));
+	else {
+		printf ("Usage: ./a.out <integer>");
+	}
 
-	printf ("%u\r\n", ~(524288-1));
+	return 0;
 }

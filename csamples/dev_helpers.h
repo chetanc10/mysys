@@ -258,6 +258,15 @@ static inline int ABC_CLOSE_V (int fd)
 #endif
 
 /**
+ * @func    : LSB_BITSET
+ * @brief   : get the LSB which is set in a given integer
+ * @inputs  : n - an integer
+ * @outputs : bit location - starting from bit 0 to relevant range
+ * @return  : bit location - starting from bit 0 to relevant range
+ */
+#define LSB_SETBIT(x) (((x) ^ ((x) - 1) & (x)) - 1)
+
+/**
  * @func    : 
  * @brief   : 
  * @inputs  : 
