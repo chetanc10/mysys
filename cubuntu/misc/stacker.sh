@@ -7,6 +7,7 @@ Usage="Usage: stacker.sh <src-directory> [src-dir/sub-dir]"
 tel=/home/vchn075/Music/Miks_Telugu
 hin=/home/vchn075/Music/Miks_Hindi
 eng=/home/vchn075/Music/Miks_English
+oth=/home/vchn075/Music/Miks_Other
 
 echo "For stacking choices:
 	RET : do nothing and proceed to next entry
@@ -14,28 +15,73 @@ echo "For stacking choices:
 	t   : move the current file to directory" $tel"
 	h   : move the current file to directory" $hin"
 	e   : move the current file to directory" $eng"
+	o   : move the current file to directory" $oth"
 	x|q : exit the utility right now!
 	"
 
 mkdir -p $tel
 mkdir -p $hin
 mkdir -p $eng
+mkdir -p $oth
 
-skip_done=0
+[[ "$2" == */ ]] && offset_dir=${2::-1} || offset_dir="$2"
+[[ "$1" == */ ]] && main_dir=${1::-1} || main_dir="$1"
+
+[ ! -d "$1" ] && echo "invalid path: $1" && exit -1
+[ -n "$2" ] && [ ! -d "$2" ] && echo "invalid path: $2" && exit -2
+
+take_action () {
+	retval=1
+	case "$1" in
+		d) rm -rf $2
+			;;
+		t) mv $2 $tel/
+			;;
+		h) mv $2 $hin/
+			;;
+		e) mv $2 $eng/
+			;;
+		o) mv $2 $oth/
+			;;
+		x|q) echo "Exiting.." >&2 ; retval=-1
+			;;
+		*) retval=0
+			;;
+	esac
+	echo $retval
+}
+
+rem_check () {
+	if [ $(ls -A "$1" | wc -l) -eq 0 ]; then
+		echo -n "Remove emptied dir $1? (y|n): " >&2
+		read answer
+		[ "$answer" == "y" ] && rmdir "$1"
+		echo 1
+	else
+		echo 0
+	fi
+}
 
 stacker () {
 	local entry
+	local rets
 	for entry in "$1"/*
 	do
+		#echo with $entry in $1
 		if [ -d "$entry" ]; then
-			if [ -d "$2" ] && [ $skip_done == 0 ]; then
-				#skip till $2 entry is found; we know we want to go beyond..
-				[[ "$entry" != "$2" ]] && continue || skip_done=1
-			else
-				echo -n "Wanna stack the directory $entry? (y|q): "
+			# if user has given an offset directory, we skip all entries
+			# till we find that offset directory..
+			# if user didn't ask for offset_dir, we just stack that as usual
+			if [ -n "$offset_dir" ] && [ "$entry" == "$offset_dir" ]; then
+				if [ $(rem_check "$entry") -eq 0 ]; then
+					stacker "$entry"
+				fi
+				offset_dir=""
+			elif [ -z "$offset_dir" ]; then
+				echo -n "Wanna stack $entry? (y|q|RET): "
 				read answer
-				[[ "$answer" == "y" ]] && stacker "$entry"
-				[[ "$answer" == "q" ]] && echo "Exiting.." && exit 0
+				[ "$answer" == "y" ] && stacker "$entry"
+				[ "$answer" == "q" ] && echo "Exiting.." && exit 0
 			fi
 			continue
 		fi
@@ -43,24 +89,19 @@ stacker () {
 		echo -n "'$entry' Choice: "
 		read answer
 		pkill vlc
-
-		## Using case-esac
-		case $answer in
-			d) rm -rf $entry && continue
-				;;
-			t) mv $entry $tel/ && continue
-				;;
-			h) mv $entry $hin/ && continue
-				;;
-			e) mv $entry $eng/ && continue
-				;;
-			x|q) echo "Exiting.." && exit 0
-				;;
-			c|*) [[ $(ls -A "$1" | wc -l) -eq 0 ]] && rmdir "$1"
-				;;
-		esac
+		rets=$(take_action $answer $entry)
+		[ $rets -eq -1 ] && exit 0
 	done
+	discarding_ret=$(rem_check "$1")
+	if [ $(ls -A "$1" | wc -l) -eq 1 ]; then
+		local singly="$1/$(ls "$1" | sort -n | head -1)"
+		echo -n "Just 1 entry left in $1. Move it to tel|hin|eng|oth or nothing? (t|h|e|o|RET): "
+		read answer
+		moved=$(take_action "$answer" "$singly")
+		[ $moved -eq 1 ] && discarding_ret=$(rem_check "$1")
+	fi
+	return 0
 }
 
-stacker "$@" && echo "stacker is done!"
+stacker "$main_dir" "$offset_dir" && echo "stacker is done!"
 
