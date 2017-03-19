@@ -83,7 +83,7 @@ REDO:
 int main(uint8_t argc, char **argv)
 {
 	if(argc < 2) {
-		printf("Jaffa! give an arg\n\r");
+		printf("Usage: a.out < e | d >\n\r");
 		return;
 	}
 
