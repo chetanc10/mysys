@@ -62,26 +62,37 @@ rem_check () {
 	fi
 }
 
+ask_stack () {
+	echo -n "Wanna stack $1? (y|q|RET): "
+	read answer
+	[ "$answer" == "y" ] && \
+		[ $(rem_check "$1") -eq 0 ] && stacker "$1"
+	[ "$answer" == "q" ] && echo "Exiting.." && exit 0
+}
+
 stacker () {
 	local entry
 	local rets
 	for entry in "$1"/*
 	do
-		#echo with $entry in $1
 		if [ -d "$entry" ]; then
 			# if user has given an offset directory, we skip all entries
 			# till we find that offset directory..
 			# if user didn't ask for offset_dir, we just stack that as usual
-			if [ -n "$offset_dir" ] && [ "$entry" == "$offset_dir" ]; then
-				if [ $(rem_check "$entry") -eq 0 ]; then
-					stacker "$entry"
+			if [ -n "$offset_dir" ]; then
+				# if offset_dir found?
+				if [ "$entry" == "$offset_dir" ]; then
+					if [ $(rem_check "$entry") -eq 0 ]; then
+						stacker "$entry"
+					fi
+					offset_dir=""
+				else
+					# for sub-dirs inside $2 directory
+					parent_dir=$(dirname "$entry")
+					[ "$parent_dir" == "$offset_dir" ] && ask_stack "$entry"
 				fi
-				offset_dir=""
 			elif [ -z "$offset_dir" ]; then
-				echo -n "Wanna stack $entry? (y|q|RET): "
-				read answer
-				[ "$answer" == "y" ] && stacker "$entry"
-				[ "$answer" == "q" ] && echo "Exiting.." && exit 0
+				ask_stack "$entry"
 			fi
 			continue
 		fi
@@ -92,13 +103,13 @@ stacker () {
 		rets=$(take_action $answer $entry)
 		[ $rets -eq -1 ] && exit 0
 	done
-	discarding_ret=$(rem_check "$1")
-	if [ $(ls -A "$1" | wc -l) -eq 1 ]; then
+	rets=$(rem_check "$1")
+	if [ $rets -eq 0 ] && [ $(ls -A "$1" | wc -l) -eq 1 ]; then
 		local singly="$1/$(ls "$1" | sort -n | head -1)"
 		echo -n "Just 1 entry left in $1. Move it to tel|hin|eng|oth or nothing? (t|h|e|o|RET): "
 		read answer
 		moved=$(take_action "$answer" "$singly")
-		[ $moved -eq 1 ] && discarding_ret=$(rem_check "$1")
+		[ $moved -eq 1 ] && rets=$(rem_check "$1")
 	fi
 	return 0
 }
