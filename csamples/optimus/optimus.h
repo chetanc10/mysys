@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 #define SIZEOF_ARRAY(arr_var) (sizeof (arr_var) / sizeof (*arr_var))
@@ -18,5 +19,6 @@ int test_vassign (uint8_t argc, char **argv);
 int test_funccall (uint8_t argc, char **argv);
 int test_codeskip (uint8_t argc, char **argv);
 int test_exitloop (uint8_t argc, char **argv);
+int test_printdelay (uint8_t argc, char **argv);
 
 #endif /*__OPTIMUS_H*/

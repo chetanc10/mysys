@@ -12,6 +12,7 @@ const char *usage_str = "Usage: ./optimus <test> [additional-args]\n" \
 						 "\tfunccall\n" \
 						 "\tcodeskip\n" \
 						 "\texitloop\n" \
+						 "\tprintdelay\n" \
 						 ;
 
 typedef int (*test_cb_t)(uint8_t argc, char **argv);
@@ -35,6 +36,7 @@ int main (int argc, char **argv)
 		{"funccall", test_funccall},
 		{"codeskip", test_codeskip},
 		{"exitloop", test_exitloop},
+		{"printdelay", test_printdelay},
 	};
 
 	if (argc < 2) {
