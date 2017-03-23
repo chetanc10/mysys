@@ -267,6 +267,21 @@ static inline int ABC_CLOSE_V (int fd)
 #define LSB_SETBIT(x) (((x) ^ ((x) - 1) & (x)) - 1)
 
 /**
+ * @func    : UPDATE_COUNT
+ * @brief   : takes last pkt-count and cur pkt-count and does the count update
+ * 			  such that the actual pkt-count to be added is properly taken and
+ * 			  added to backup counter in software
+ * @inputs  : cur_hw_cnt, cur_sw_cnt, last_hw_cnt
+ * @outputs : updated cur_sw_cnt and last_hw_cnt
+ * @return  : last_hw_cnt
+ */
+#define UPDATE_COUNT (cur_hw_cnt, cur_sw_cnt, last_hw_cnt) \
+{ \
+	cur_sw_cnt += (0x1000000000LL + cur_hw_cnt - last_hw_cnt) & 0xFFFFFFFFFLL; \
+	last_hw_cnt = cur_hw_cnt; \
+}
+
+/**
  * @func    : 
  * @brief   : 
  * @inputs  : 
