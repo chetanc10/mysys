@@ -13,6 +13,7 @@ const char *usage_str = "Usage: ./optimus <test> [additional-args]\n" \
 						 "\tcodeskip\n" \
 						 "\texitloop\n" \
 						 "\tprintdelay\n" \
+						 "\tabsval <num1> <num2> (does num1-num2 and give 'absolute' result)\n" \
 						 ;
 
 typedef int (*test_cb_t)(uint8_t argc, char **argv);
@@ -37,6 +38,7 @@ int main (int argc, char **argv)
 		{"codeskip", test_codeskip},
 		{"exitloop", test_exitloop},
 		{"printdelay", test_printdelay},
+		{"absval", test_absval},
 	};
 
 	if (argc < 2) {

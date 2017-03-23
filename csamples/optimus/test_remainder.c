@@ -1,14 +1,14 @@
 
 #include "optimus.h"
 
-static inline uint32_t remainder_bit (uint32_t x, uint32_t lmt_mask)
+static inline uint32_t remainder_bit (uint32_t x, uint32_t lmt)
 {
-	return x & lmt_mask;
+	return x & (lmt-1);
 }
 
 static inline uint32_t remainder_mod (uint32_t x, uint32_t lmt)
 {
-	return ++x % lmt;
+	return x % lmt;
 }
 
 int test_remainder (uint8_t argc, char **argv)
@@ -34,6 +34,10 @@ int test_remainder (uint8_t argc, char **argv)
 	}
 
 	lmt = atoi (argv[1]);
+	if (lmt & (lmt - 1)) {
+		printf ("test_remainder needs divisor as power of 2 only!\n");
+		return -4;
+	}
 
 	for (fidx = 0; fidx < SIZEOF_ARRAY (remainder_modes); fidx++) {
 		func = remainder_modes[fidx].func;

@@ -20,5 +20,7 @@ int test_funccall (uint8_t argc, char **argv);
 int test_codeskip (uint8_t argc, char **argv);
 int test_exitloop (uint8_t argc, char **argv);
 int test_printdelay (uint8_t argc, char **argv);
+int test_absval (uint8_t argc, char **argv);
 
 #endif /*__OPTIMUS_H*/
+

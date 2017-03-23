@@ -4,29 +4,29 @@
 static inline uint32_t codeskip_cont (void)
 {
 	uint32_t i;
-	uint32_t temp1;
+	uint32_t temp1, temp2;
 	for (i = 0; i < 10; i++) {
 		if (i == 5)
 			continue;
 		temp1 = (((1 << i) % 32 + i) - 1) && 0x000000ff;
-		(temp1 < 32) ? temp1 : 32;
+		temp2 = (temp1 < 32) ? temp1 : 32;
 	}
-	return 0;
+	return temp2;
 }
 
 static inline uint32_t codeskip_goto (void)
 {
 	uint32_t i;
-	uint32_t temp1;
+	uint32_t temp1, temp2;
 	for (i = 0; i < 10;) {
 		if (i == 5)
 			goto update_i;
 		temp1 = (((1 << i) % 32 + i) - 1) && 0x000000ff;
-		(temp1 < 32) ? temp1 : 32;
+		temp2 = (temp1 < 32) ? temp1 : 32;
 update_i:
 		i++;
 	}
-	return 0;
+	return temp2;
 }
 
 int test_codeskip (uint8_t argc, char **argv)
