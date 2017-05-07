@@ -15,7 +15,7 @@ alias jiyo='sudo reboot'
 
 # source code browsing
 alias detag='rm -rf cscope.out; rm -rf tags'
-alias retag='rm -rf cscope.out; rm -rf tags; cscope -Rb; ctags -R'
+alias retag='cscope -Rb && ctags -R'
 
 ###############################
 #### path specific aliases ####
