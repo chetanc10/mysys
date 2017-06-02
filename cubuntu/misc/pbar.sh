@@ -14,9 +14,9 @@ TRUE=1
 pgrep $name > /dev/null
 
 if [ "$2" == "-v" ]; then
-	ps aux | grep "$name" | grep -v grep
+	ps aux | grep "$name" | grep -v grep | grep -v pbar.sh
 else
-	ps aux | grep "$name" | grep -v grep > /dev/null
+	ps aux | grep "$name" | grep -v grep | grep -v pbar.sh > /dev/null
 fi
 
 terminated=$?
@@ -26,9 +26,11 @@ if [ "$terminated" == "$FALSE" ]; then
 	if [ "$yes" != "y" ]; then
 		exit 0
 	fi
+	echo "Going to wait now.."
 	while [ 1 ]
 	do
-		pgrep $name > /dev/null
+		ps aux | grep "$name" | grep -v grep | grep -v pbar.sh > /dev/null
+		#pgrep $name > /dev/null
 		terminated=$?
 		if [ "$terminated" == "$TRUE" ]; then
 			break
