@@ -1,62 +1,81 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include <stdint.h>
 #include <errno.h>
 #include <signal.h>
 #include <time.h>
 #include <unistd.h>
 
-#define CLOCKID CLOCK_REALTIME
-#define SIG SIGALRM
-static timer_t timerid;
+#define TOUT 3
 
-uint64_t count = 1;
+timer_t timerID;
+struct sigevent   sev;
+struct itimerspec its;
+struct sigaction  sa;
 
-int r = 1;
-static void timeout_handler(int sig, siginfo_t *si, void *uc)
+struct dummy {
+	int seconds_elapsed;
+	char name[12];
+};
+
+struct dummy dummy = {0, "dummy"};
+
+#define SEC_TO_NANOSEC(n) (n * 1000000000)
+
+void dummy_cb (int sig, siginfo_t *si, void *uc)
 {
-	/*if(si->si_value.sival_ptr != &count){*/
-	/*printf ("strayso: %p: %d\n", si->si_value.sival_ptr, *(int *)(si->si_value.sival_ptr));*/
-	/*} else {*/
-	printf ("counto: %p: %p\n", si->si_value.sival_ptr, *(uint64_t *)(si->si_value.sival_ptr));
-	r = 0;
-	/*}*/
+	struct dummy *d = si->si_value.sival_ptr;
+
+	system ("date");
+
+	if (++d->seconds_elapsed >= TOUT) {
+		/*memset (&its, 0, sizeof (its));*/
+		/*timer_settime (timerID, 0, &its, NULL);*/
+		/*perror ("timer_settime");*/
+		printf ("DONE!!!!\n");
+	}
 }
 
-int main(int argc, char *argv[])
+void create_timer (void *timerCB, void *arg, uint64_t expiry_ns, int signo)
 {
-	struct sigevent sev;
-	struct itimerspec its = {0};
-	struct sigaction sa;
-	printf("Establishing handler for signal %d\n", SIG);
 	sa.sa_flags = SA_SIGINFO;
-	sa.sa_sigaction = timeout_handler;
-	sigemptyset(&sa.sa_mask);
-	sigaction(SIG, &sa, NULL);
-
+	sa.sa_sigaction = timerCB;
+	sigemptyset (&sa.sa_mask);
+	sigaction (signo, &sa, NULL);
 	sev.sigev_notify = SIGEV_SIGNAL;
-	sev.sigev_signo = SIG;
-	sev.sigev_value.sival_ptr = &count;
-#if 0
-	if (timer_delete (timerid)) {
-		perror("timer_delete:");
-		return errno;
+	sev.sigev_signo = signo;
+	sev.sigev_value.sival_ptr = arg;
+
+	its.it_value.tv_sec = expiry_ns / 1000000000;
+	its.it_value.tv_nsec = expiry_ns % 1000000000;
+	its.it_interval.tv_sec = expiry_ns / 1000000000;
+	its.it_interval.tv_nsec = expiry_ns % 1000000000;
+
+	if (timer_create (CLOCK_REALTIME, &sev, &timerID)) {
+		perror ("timerALARM");
+		exit (-1);
 	}
-#endif
-	timer_create(CLOCKID, &sev, &timerid);
-	count = (uint64_t)timerid;
-	printf ("timer: %p\n", timerid);
-	printf ("count: %p\n", count);
 
-	/* Start the timer */
-	its.it_value.tv_sec = 4;
-	its.it_value.tv_nsec = 0;
-	//     its.it_interval.tv_sec = its.it_value.tv_sec;
-	//     its.it_interval.tv_nsec = its.it_value.tv_nsec;
+	if (timer_settime (timerID, 0, &its, NULL)) {
+		perror ("timer_settime:");
+		exit (-2);
+	}
+}
 
-	timer_settime(timerid, 0, &its, NULL);
-	while (r)
-		sleep(3);
-	printf ("done with timers: ");
-	printf ("%d\n", timer_delete (timerid));
+int main (int argc, char **argv)
+{
+	create_timer (dummy_cb, &dummy, SEC_TO_NANOSEC (1), SIGALRM);
+	while (dummy.seconds_elapsed < TOUT) {
+		printf ("::%d\n", dummy.seconds_elapsed);
+		usleep (500000);
+	}
+	/*memset (&its, 0, sizeof (its));*/
+	sigprocmask(SIG_UNBLOCK, &sa.sa_mask, NULL);
+	/*timer_settime (timerID, 0, &its, NULL);*/
+	/*perror ("timer_settime");*/
+	timer_delete (timerID);
+	/*perror ("timer-delete");*/
 	return 0;
 }
+
