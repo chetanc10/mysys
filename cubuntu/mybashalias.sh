@@ -9,10 +9,6 @@
 #### multi-purpose aliases ####
 ###############################
 
-# reboot/poweroff
-alias chav='sudo poweroff'
-alias jiyo='sudo reboot'
-
 # source code browsing
 alias detag='rm -rf cscope.out; rm -rf tags'
 alias retag='cscope -Rb && ctags -R'
@@ -28,13 +24,18 @@ alias wrk='cd /home/vchn075/ChetaN/snips'
 
 ### Current Projects ###
 
+# AMDU_CROF #
+alias amdu='cd /home/vchn075/ChetaN/Projects/amdu_crof'
+alias dpdk_amdu='cd /home/vchn075/ChetaN/Projects/amdu_crof/gitto/amdu_crof/dpdk/16.07'
+
+# VIVU_WPMD #
+alias vivu='cd /home/vchn075/ChetaN/Projects/vivu_wpmd'
+alias wpmd='cd /home/vchn075/ChetaN/Projects/vivu_wpmd/gerrit/vivu_wpmd/dpdk-17.05/'
+
 # XILU_iOVS #
 alias iovs='cd /home/vchn075/ChetaN/Projects/xilu_iovs'
+alias dpdk_iovs='cd /home/vchn075/ChetaN/Projects/xilu_iovs/svn/xilu_iovs/trunk/dpdk-16.04'
 
 # FSLU_NVME #
 alias sfslu='cd /home/vchn075/ChetaN/Projects/fslu_nvme'
 
-# NTGU_W710 #
-#alias ntgl='cd /home/vchn075/ChetaN/Projects/ntgu_w710/WNAPxxx_80211N/sdk/build/projects/WAC710/linux-3.14.43'
-#alias ntgu='cd /home/vchn075/ChetaN/Projects/ntgu_w710/WNAPxxx_80211N/sdk/build/projects/WAC710/uboot-2012.07'
-#alias ntgs='cd /home/vchn075/ChetaN/Projects/ntgu_w710/WNAPxxx_80211N/sdk'
