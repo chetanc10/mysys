@@ -11,10 +11,12 @@ fi
 FALSE=0
 TRUE=1
 
+pgrep $name > /dev/null
+
 if [ "$2" == "-v" ]; then
-	pgrep $name
+	ps aux | grep "$name" | grep -v grep
 else
-	pgrep $name > /dev/null
+	ps aux | grep "$name" | grep -v grep > /dev/null
 fi
 
 terminated=$?
