@@ -5,7 +5,7 @@ typedef struct {
 	char name[20];
 	int n;
 /*} sa_t;*/
-	} sa_t __attribute__((__packed__));
+	} __attribute__((__packed__)) sa_t;
 
 typedef struct {
 	char name[20];
@@ -14,7 +14,7 @@ typedef struct {
 	int n3:1;
 	int rsv:29;
 /*} sb_t;*/
-	} sb_t __attribute__((__packed__));
+	} __attribute__((__packed__)) sb_t;
 
 sa_t sa;
 sb_t sb;

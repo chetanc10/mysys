@@ -15,6 +15,7 @@ const char *usage_str = "Usage: ./optimus <test> [additional-args]\n" \
 						 "\tprintdelay\n" \
 						 "\tabsval <num1> <num2> (does num1-num2 and give 'absolute' result)\n" \
 						 "\tstructbits\n" \
+						 "\tbitset\n" \
 						 ;
 
 typedef int (*test_cb_t)(uint8_t argc, char **argv);
@@ -41,6 +42,7 @@ int main (int argc, char **argv)
 		{"printdelay", test_printdelay},
 		{"absval", test_absval},
 		{"structbits", test_structbits},
+		{"bitset", test_bitset},
 	};
 
 	if (argc < 2) {
