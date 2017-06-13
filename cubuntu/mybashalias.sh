@@ -26,7 +26,7 @@ alias wrk='cd /home/vchn075/ChetaN/snips'
 
 # AMDU_CROF #
 alias amdu='cd /home/vchn075/ChetaN/Projects/amdu_crof'
-alias dpdk_amdu='cd /home/vchn075/ChetaN/Projects/amdu_crof/gitto/amdu_crof/dpdk/16.07'
+alias dpdk_amdu='cd /home/vchn075/ChetaN/Projects/amdu_crof/gerrito/amdu_crof/dpdk/16.07'
 
 # VIVU_WPMD #
 alias vivu='cd /home/vchn075/ChetaN/Projects/vivu_wpmd'
