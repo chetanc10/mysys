@@ -13,7 +13,7 @@ static inline uint32_t circinc_cm2 (uint32_t x, uint32_t lmt)
 
 static inline uint32_t circinc_bits (uint32_t x, uint32_t lmt_mask)
 {
-	return (x + 1) & (lmt_mask);
+	return (x + 1) & (lmt_mask - 1);
 }
 
 static inline uint32_t circinc_if (uint32_t x, uint32_t lmt)
