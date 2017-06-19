@@ -21,6 +21,7 @@ alias retag='cscope -Rb && ctags -R'
 alias src='cd /home/vchn075/ChetaN/Refs'
 alias scrap='cd /home/vchn075/ChetaN/Junk/scrap'
 alias wrk='cd /home/vchn075/ChetaN/snips'
+alias gitst='git status'
 
 ### Current Projects ###
 

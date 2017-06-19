@@ -23,6 +23,7 @@ int test_printdelay (uint8_t argc, char **argv);
 int test_absval (uint8_t argc, char **argv);
 int test_structbits (uint8_t argc, char **argv);
 int test_bitset (uint8_t argc, char **argv);
+int test_condret (uint8_t argc, char **argv);
 
 #endif /*__OPTIMUS_H*/
 
