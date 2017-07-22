@@ -25,13 +25,13 @@ alias gitst='git status'
 
 ### Current Projects ###
 
+# WAC_720 #
+alias wacu='cd /home/vchn075/ChetaN/Projects/wac_720'
+
 # AMDU_CROF #
 alias amdu='cd /home/vchn075/ChetaN/Projects/amdu_crof'
 alias dpdk_amdu='cd /home/vchn075/ChetaN/Projects/amdu_crof/gerrito/amdu_crof/dpdk/16.07'
-
-# VIVU_WPMD #
-alias vivu='cd /home/vchn075/ChetaN/Projects/vivu_wpmd'
-alias wpmd='cd /home/vchn075/ChetaN/Projects/vivu_wpmd/gerrit/vivu_wpmd/dpdk-17.05/'
+alias amdulinux='cd /home/vchn075/ChetaN/Projects/amdu_crof/gitto/net-next'
 
 # XILU_iOVS #
 alias iovs='cd /home/vchn075/ChetaN/Projects/xilu_iovs'

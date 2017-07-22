@@ -258,3 +258,10 @@ select using visual mode and put lines to other file - :'<,'>diffput
 /*delete all empty lines*/
 :g/^$/d
 :v/./d
+
+/*arrange visually selected block of lines and sort them in alphabetical order*/
+"shift-v" then ":sort"
+
+/*yank all lines matching pattern*/
+:g/^match/yank A
+

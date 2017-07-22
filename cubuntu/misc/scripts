@@ -79,3 +79,6 @@ rename 's/ /<char>/g' <file>
 
 // rename file by removing '[word]' (enclosed between [])
 rename 's/\[.*\]//g' <file>
+
+// find 2nd process on THIS pipe
+(find /proc -type l | xargs ls -l | fgrep 'pipe:[THIS]') 2>/dev/null
