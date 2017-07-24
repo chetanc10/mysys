@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ ! -r "/home/vchn075/ChetaN/snips/cubuntu/misc/indent.vim" ]; then
-	echo "MYERR: File not found at expected location: /home/vchn075/ChetaN/snips/cubuntu/misc/indent.vim"
+if [ ! -r "/home/vchn075/ChetaN/snips/cubuntu/c10setup/indent.vim" ]; then
+	echo "MYERR: File not found at expected location: /home/vchn075/ChetaN/snips/cubuntu/c10setup/indent.vim"
 	exit -1;
 fi
 
@@ -15,7 +15,7 @@ elif [ "$1" == "cp" ]; then
 	1. > vim .
 	2. In Command Mode - :source indent.vim
 	3. Press <Ctrl> key along with l";
-	cp /home/vchn075/ChetaN/snips/cubuntu/misc/indent.vim .;
+	cp /home/vchn075/ChetaN/snips/cubuntu/c10setup/indent.vim .;
 	exit 0;
 elif [ "$1" == "rm" ]; then
 	echo "Removing indent.vim from current directory";

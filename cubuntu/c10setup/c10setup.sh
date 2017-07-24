@@ -65,6 +65,10 @@ install_crems () {
 	done
 }
 
+setup_c10bash () {
+	sed -i -e 's/\~\/\.bash_aliases/\/home\/vchn075\/ChetaN\/snips\/cubuntu\/c10bashsetup.sh/g' /home/vchn075/.bashrc
+}
+
 echo -ne "\nDo you need utility Installations? (y|n): "
 read answer
 [[ "$answer" == "y" ]] && install_cutils
@@ -83,5 +87,10 @@ read answer
 echo -ne "\nProceed to UNInstallations? (y|n): "
 read answer
 [[ "$answer" == "y" ]] && install_crems
+[[ "$answer" == "x" ]] && exit 0
+
+echo -ne "\nSetup c10bash? (y/n): "
+read answer
+[[ "$answer" == "y" ]] && setup_c10bash
 [[ "$answer" == "x" ]] && exit 0
 
