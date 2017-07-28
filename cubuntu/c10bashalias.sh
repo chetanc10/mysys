@@ -18,25 +18,20 @@ alias retag='cscope -Rb && ctags -R'
 ###############################
 
 ### Miscellaneous regulars ####
-alias src='cd /home/vchn075/ChetaN/Refs'
-alias scrap='cd /home/vchn075/ChetaN/Junk/scrap'
+alias src='cd /home/vchn075/ChetaN/refs'
+alias scrap='cd /home/vchn075/ChetaN/junk/scrap'
 alias wrk='cd /home/vchn075/ChetaN/snips'
 alias gitst='git status'
 
-### Current Projects ###
+### Current projects ###
 
 # WAC_720 #
-alias wacu='cd /home/vchn075/ChetaN/Projects/wac_720'
-
-# AMDU_CROF #
-alias amdu='cd /home/vchn075/ChetaN/Projects/amdu_crof'
-alias dpdk_amdu='cd /home/vchn075/ChetaN/Projects/amdu_crof/gerrito/amdu_crof/dpdk/16.07'
-alias amdulinux='cd /home/vchn075/ChetaN/Projects/amdu_crof/gitto/net-next'
+alias wacu='cd /home/vchn075/ChetaN/projects/wac_720'
 
 # XILU_iOVS #
-alias iovs='cd /home/vchn075/ChetaN/Projects/xilu_iovs'
-alias dpdk_iovs='cd /home/vchn075/ChetaN/Projects/xilu_iovs/svn/xilu_iovs/trunk/dpdk-16.04'
+alias iovs='cd /home/vchn075/ChetaN/projects/xilu_iovs'
+alias dpdk_iovs='cd /home/vchn075/ChetaN/projects/xilu_iovs/svn/xilu_iovs/trunk/dpdk-16.04'
 
 # FSLU_NVME #
-alias sfslu='cd /home/vchn075/ChetaN/Projects/fslu_nvme'
+alias sfslu='cd /home/vchn075/ChetaN/projects/fslu_nvme'
 
