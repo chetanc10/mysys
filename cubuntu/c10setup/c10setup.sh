@@ -3,7 +3,7 @@
 echo "Installer program for basic system utilities and libraries. Enter x during any stage of question from me to kill me"
 echo "*********WARNING:\nDURING UNINSTALLATIONS, PLEASE BE VERY CAREFUL AND OBSERVE WHICH PACKAGES ARE ADDITIONALLY REMOVED ALONG WITH REQUESTED UNINSTALLATION AND DECIDE IF YOU WANT TO PROCEED!"
 
-declare -a cutils=(vim git at subversion skype meld vlc ssh tomboy cscope exuberant-ctags nmap openssh-server openssh-client gparted synaptic curl wifi-radar wireshark qemu-system-x86)
+declare -a cutils=(vim git at subversion skype meld vlc ssh tomboy cscope exuberant-ctags nmap openssh-server openssh-client youtube-dl gparted synaptic curl wifi-radar wireshark qemu-system-x86)
 
 install_cutils () {
 	for i in "${cutils[@]}"
