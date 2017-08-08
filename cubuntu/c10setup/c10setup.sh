@@ -3,7 +3,7 @@
 echo "Installer program for basic system utilities and libraries. Enter x during any stage of question from me to kill me"
 echo "*********WARNING:\nDURING UNINSTALLATIONS, PLEASE BE VERY CAREFUL AND OBSERVE WHICH PACKAGES ARE ADDITIONALLY REMOVED ALONG WITH REQUESTED UNINSTALLATION AND DECIDE IF YOU WANT TO PROCEED! OTHERWISE, KEEP AWAY FROM THAT AREA"
 
-declare -a cutils=(vim cscope exuberant-ctags git at subversion meld ssh rar unrar vlc tomboy nmap openssh-server openssh-client skype youtube-dl gparted synaptic curl wifi-radar wireshark qemu-system-x86)
+declare -a cutils=(vim cscope exuberant-ctags git at minicom tftp_server subversion meld ssh rar unrar vlc tomboy nmap openssh-server openssh-client skype youtube-dl gparted synaptic curl wifi-radar wireshark qemu-system-x86)
 
 install_cutils () {
 	for i in "${cutils[@]}"
@@ -30,6 +30,29 @@ install_cutils () {
 					cp -r /home/vchn075/ChetaN/snips/cubuntu/dotvim /home/vchn075/.vim
 					cp /home/vchn075/ChetaN/snips/cubuntu/dotvimrc /home/vchn075/.vimrc
 				fi
+			elif [ "$i" == "tftp_server" ]; then
+				echo "Installing an app-trio: xinetd tftpd tftp"
+				sudo apt-get install xinetd tftpd tftp
+
+				echo "Setting up a hookup script to link a /tftpboot folder to tftp_server"
+				sudo echo "service tftp
+				{
+					protocol        = udp
+					port            = 69
+					socket_type     = dgram
+					wait            = yes
+					user            = nobody
+					server          = /usr/sbin/in.tftpd
+					server_args     = /tftpboot
+					disable         = no
+				}" > /etc/xinetd.d/tftp
+
+				echo "Setting up a user accessible /tftpboot folder to hold files for transfer by tftp_server"
+				sudo mkdir /tftpboot && sudo chmod -R 666 /tftpboot && sudo chown -R nobody /tftpboot
+
+				sudo /etc/init.d/xinetd restart
+
+				continue
 			fi
 			echo -e "Installing $i"
 			sudo apt-get install $i
