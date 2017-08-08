@@ -1,23 +1,24 @@
 
 #include "optimus.h"
 
-const char *usage_str = "Usage: ./optimus <test> [additional-args]\n" \
-						 "Options:\n" \
-						 "\tcircinc <start> <wrap-limit>\n" \
-						 "\tminmax <num> <min> <max>\n" \
-						 "\tsigunsig\n" \
-						 "\tintalign\n" \
-						 "\tremainder <num> <divider>\n" \
-						 "\tvassign\n" \
-						 "\tfunccall\n" \
-						 "\tcodeskip\n" \
-						 "\texitloop\n" \
-						 "\tprintdelay\n" \
-						 "\tabsval <num1> <num2> (does num1-num2 and give 'absolute' result)\n" \
-						 "\tstructbits\n" \
-						 "\tbitset\n" \
-						 "\tcondret\n" \
-						 "\tzerofy\n" \
+const char *usage_str = "Usage: ./optimus <test> [additional-args]\n"
+						 "Options:\n"
+						 "\tcircinc <start> <wrap-limit>\n"
+						 "\tminmax <num> <min> <max>\n"
+						 "\tsigunsig\n"
+						 "\tintalign\n"
+						 "\tremainder <num> <divider>\n"
+						 "\tvassign\n"
+						 "\tfunccall\n"
+						 "\tcodeskip\n"
+						 "\texitloop\n"
+						 "\tprintdelay\n"
+						 "\tabsval <num1> <num2> (does num1-num2 and give 'absolute' result)\n"
+						 "\tstructbits\n"
+						 "\tbitset\n"
+						 "\tcondret\n"
+						 "\tzerofy\n"
+						 "\tquotient\n"
 						 ;
 
 typedef int (*test_cb_t)(uint8_t argc, char **argv);
@@ -47,6 +48,7 @@ int main (int argc, char **argv)
 		{"bitset", test_bitset},
 		{"condret", test_condret},
 		{"zerofy", test_zerofy},
+		{"quotient", test_quotient},
 	};
 
 	if (argc < 2) {
