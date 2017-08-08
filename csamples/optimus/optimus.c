@@ -17,6 +17,7 @@ const char *usage_str = "Usage: ./optimus <test> [additional-args]\n" \
 						 "\tstructbits\n" \
 						 "\tbitset\n" \
 						 "\tcondret\n" \
+						 "\tzerofy\n" \
 						 ;
 
 typedef int (*test_cb_t)(uint8_t argc, char **argv);
@@ -45,6 +46,7 @@ int main (int argc, char **argv)
 		{"structbits", test_structbits},
 		{"bitset", test_bitset},
 		{"condret", test_condret},
+		{"zerofy", test_zerofy},
 	};
 
 	if (argc < 2) {
