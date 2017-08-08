@@ -4,10 +4,10 @@ Usage="Usage: stacker.sh <src-directory> [src-dir/sub-dir]"
 
 [[ -z "$1" ]] && echo $Usage && exit -1
 
-tel=/home/vchn075/Music/Miks_Telugu
-hin=/home/vchn075/Music/Miks_Hindi
-eng=/home/vchn075/Music/Miks_English
-oth=/home/vchn075/Music/Miks_Other
+tel=/home/vchn075/Music/miks_telugu
+hin=/home/vchn075/Music/miks_hindi
+eng=/home/vchn075/Music/miks_english
+oth=/home/vchn075/Music/miks_other
 
 echo "For stacking choices:
 	RET : do nothing and proceed to next entry
@@ -33,15 +33,15 @@ mkdir -p $oth
 take_action () {
 	retval=1
 	case "$1" in
-		d) rm -rf $2
+		d) rm -rf "$2"
 			;;
-		t) mv $2 $tel/
+		t) mv "$2" $tel/
 			;;
-		h) mv $2 $hin/
+		h) mv "$2" $hin/
 			;;
-		e) mv $2 $eng/
+		e) mv "$2" $eng/
 			;;
-		o) mv $2 $oth/
+		o) mv "$2" $oth/
 			;;
 		x|q) echo "Exiting.." >&2 ; retval=-1
 			;;
@@ -96,11 +96,11 @@ stacker () {
 			fi
 			continue
 		fi
-		cvlc $entry 1>/dev/null 2>/dev/null &
+		cvlc "$entry" 1>/dev/null 2>/dev/null &
 		echo -n "'$entry' Choice: "
 		read answer
 		pkill vlc
-		rets=$(take_action $answer $entry)
+		rets=$(take_action $answer "$entry")
 		[ $rets -eq -1 ] && exit 0
 	done
 	rets=$(rem_check "$1")
@@ -115,4 +115,26 @@ stacker () {
 }
 
 stacker "$main_dir" "$offset_dir" && echo "stacker is done!"
+
+#shopt -s nullglob dotglob     # To include hidden files
+
+if [ `ls -A $tel | wc -l` -eq 0 ]; then
+	#echo "Removing empty directory: $tel";
+	rm -rf $tel
+fi
+
+if [ `ls -A $hin | wc -l` -eq 0 ]; then
+	#echo "Removing empty directory: $hin";
+	rm -rf $hin
+fi
+
+if [ `ls -A $eng | wc -l` -eq 0 ]; then
+	#echo "Removing empty directory: $eng";
+	rm -rf $eng
+fi
+
+if [ `ls -A $oth | wc -l` -eq 0 ]; then
+	#echo "Removing empty directory: $oth";
+	rm -rf $oth
+fi
 
