@@ -9,6 +9,12 @@ if [ -f /home/vchn075/ChetaN/snips/cubuntu/c10bashalias.sh ]; then
     . /home/vchn075/ChetaN/snips/cubuntu/c10bashalias.sh
 fi
 
+# Improve history file storage capability
+unset HISTSIZE
+unset HISTFILESIZE
+HISTSIZE=5000
+HISTFILESIZE=10000
+
 # subversion editor setting
 export SVN_EDITOR=vim
 
