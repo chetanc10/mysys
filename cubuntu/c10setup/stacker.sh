@@ -67,7 +67,7 @@ ask_stack () {
 	read answer
 	[ "$answer" == "y" ] && \
 		[ $(rem_check "$1") -eq 0 ] && stacker "$1"
-	[ "$answer" == "q" ] && echo "Exiting.." && exit 0
+	[ "$answer" == "q" -o "$answer" == "x" ] && echo "Exiting.." && exit 0
 }
 
 stacker () {
