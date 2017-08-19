@@ -52,6 +52,7 @@ install_cutils () {
 					cp -r /home/vchn075/ChetaN/snips/cubuntu/dotvim /home/vchn075/.vim
 					cp /home/vchn075/ChetaN/snips/cubuntu/dotvimrc /home/vchn075/.vimrc
 				fi
+				exit_if_requested $answer
 				do_aptget_install=1
 				;;
 			*)
@@ -73,7 +74,7 @@ install_clibs () {
 		echo -ne "\n\n****Install '$i'?(y|n): "
 		read answer
 		[[ "$answer" == "n" ]] && continue
-		[[ "$answer" == "x" ]] && echo "Exiting c10setup.." && exit 0
+		exit_if_requested $answer
 		echo -e "Installing $i"
 		sudo apt-get install $i
 	done
@@ -88,7 +89,7 @@ install_c10sh () {
 		echo -ne "\n\n****Install '$i'?(y|n): "
 		read answer
 		[[ "$answer" == "n" ]] && continue
-		[[ "$answer" == "x" ]] && echo "Exiting c10setup.." && exit 0
+		exit_if_requested $answer
 		echo -e "Installing $i"
 		sudo cp ./"$i" /bin/ && sudo chmod +x /bin/$i
 	done
@@ -102,7 +103,7 @@ install_crems () {
 		echo -ne "\n\n****Remove '$i'?(y|n): "
 		read answer
 		[[ "$answer" == "n" ]] && continue
-		[[ "$answer" == "x" ]] && echo "Exiting c10setup.." && exit 0
+		exit_if_requested $answer
 		echo -e "UNInstalling $i"
 		sudo apt-get remove --purge $i
 	done
@@ -143,6 +144,7 @@ echo -e "\n***************************BEWARE***************************\nDURING 
 echo -ne "Proceed to UNInstallations? (y|n): "
 read answer
 [[ "$answer" == "y" ]] && install_crems
+exit_if_requested $answer
 
 echo -ne "\nSetup c10bash? (y/n): "
 read answer
