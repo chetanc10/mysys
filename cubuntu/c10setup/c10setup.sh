@@ -80,18 +80,17 @@ install_clibs () {
 	done
 }
 
-declare -a c10sh=(extract.sh lpmode.sh pbar.sh renamer.sh stacker.sh vimindent.sh indent.vim)
-
 install_c10sh () {
-	for i in "${c10sh[@]}"
+	local newfile
+	for file in "/home/vchn075/ChetaN/snips/cubuntu/c10setup"/*.*
 	do
-		[[ ! -e ./"$i" ]] && continue
-		echo -ne "\n\n****Install '$i'?(y|n): "
+		newfile=$(basename $file)
+		echo -ne "\n\n****Install '$newfile'?(y|n): "
 		read answer
 		[[ "$answer" == "n" ]] && continue
 		exit_if_requested $answer
-		echo -e "Installing $i"
-		sudo cp ./"$i" /bin/ && sudo chmod +x /bin/$i
+		echo -e "Installing $newfile"
+		sudo cp "$file" /bin/ && sudo chmod +x /bin/$newfile
 	done
 }
 
