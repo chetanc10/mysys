@@ -265,3 +265,6 @@ select using visual mode and put lines to other file - :'<,'>diffput
 /*yank all lines matching pattern*/
 :g/^match/yank A
 
+/*remove from matched pattern to EOL*/
+:s/{pattern}.*//
+
