@@ -80,6 +80,19 @@ nmap <C-x><C-Down> :cclose<CR><CR>
 " add space in normal mode
 nnoremap <space> i<space><Esc>
 
+" toggle diff mode inside vim session between different files multiple split windows
+nnoremap <leader>f :call WdiffToggle()<cr>
+let g:wdiffState=0
+function! WdiffToggle()
+    if g:wdiffState == 0
+        windo diffthis
+        let g:wdiffState=1
+    else
+        windo diffoff
+        let g:wdiffState=0
+    endif
+endfunction
+
 " comment selected lines in visual mode
 " vmap <C-K> <S-i>//<Esc>
 
