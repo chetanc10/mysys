@@ -29,6 +29,7 @@ install_cutils () {
 				echo "Installing tftp-server dependencies: xinetd tftpd tftp"
 				sudo apt-get install xinetd tftpd tftp
 				echo "Setting up a hookup script to link a /tftpboot folder to tftp-server"
+				sudo touch /etc/xinetd.d/tftp && sudo chown vchn075 /etc/xinetd.d/tftp && sudo chmod +w /etc/xinetd.d/tftp
 				sudo echo "service tftp
 				{
 					protocol        = udp
@@ -90,7 +91,7 @@ install_c10sh () {
 		[[ "$answer" == "n" ]] && continue
 		exit_if_requested $answer
 		echo -e "Installing $newfile"
-		sudo cp "$file" /bin/ && sudo chmod +x /bin/$newfile
+		sudo cp "$file" /bin/ && sudo chmod +rx /bin/$newfile
 	done
 }
 
