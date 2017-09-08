@@ -103,3 +103,9 @@ execute pathogen#infect()
 syntax on
 filetype indent on
 
+" For temporary remote systems/servers where we can't do a c10setup for vim
+" environment
+" if !filereadable("~/.vim/plugin/cscope_maps.vim")
+" source ~/c10cscope_maps.vim
+" endif
+
