@@ -27,6 +27,7 @@ alias gitst='git status'
 
 # WAC_720 #
 alias wacu='cd /home/vchn075/ChetaN/projects/wac_720'
+alias wnc='cd /home/vchn075/ChetaN/projects/wnc'
 
 # XILU_iOVS #
 alias iovs='cd /home/vchn075/ChetaN/projects/xilu_iovs'

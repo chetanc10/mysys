@@ -2,7 +2,7 @@
 
 echo "Installer program for basic system utilities and libraries. Enter 'x' during any stage of questioning from me to kill me"
 
-declare -a cutils=(vim cscope exuberant-ctags git at tree xpad minicom tftp-server subversion meld ssh curl rar unrar vlc tomboy nmap openssh-server openssh-client skype youtube-dl gparted synaptic wifi-radar wireshark qemu-system-x86)
+declare -a cutils=(vim cscope exuberant-ctags git at tree xpad minicom tftp-server subversion meld ssh curl rar unrar vlc tomboy nmap artha skype youtube-dl gparted synaptic wifi-radar wireshark qemu-system-x86)
 
 install_cutils () {
 	for i in "${cutils[@]}"
@@ -53,6 +53,7 @@ install_cutils () {
 					cp -r /home/vchn075/ChetaN/snips/cubuntu/dotvim /home/vchn075/.vim
 					cp /home/vchn075/ChetaN/snips/cubuntu/dotvimrc /home/vchn075/.vimrc
 				fi
+				sudo chown vchn075 /home/vchn075/.viminfo && sudo chmod a+rw /home/vchn075/.viminfo
 				exit_if_requested $answer
 				do_aptget_install=1
 				;;
