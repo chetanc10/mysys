@@ -27,11 +27,12 @@ alias gitst='git status'
 
 # WAC_720 #
 alias wacu='cd /home/vchn075/ChetaN/projects/wac_720'
-alias wnc='cd /home/vchn075/ChetaN/projects/wnc'
+
+# HFCL_WLCS #
+alias wlcs='cd /home/vchn075/ChetaN/projects/hfcl_wlcs'
 
 # XILU_iOVS #
 alias iovs='cd /home/vchn075/ChetaN/projects/xilu_iovs'
-alias dpdk_iovs='cd /home/vchn075/ChetaN/projects/xilu_iovs/svn/xilu_iovs/trunk/dpdk-16.04'
 
 # FSLU_NVME #
 alias sfslu='cd /home/vchn075/ChetaN/projects/fslu_nvme'
