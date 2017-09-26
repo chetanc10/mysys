@@ -2,7 +2,7 @@
 
 echo "Installer program for basic system utilities and libraries. Enter 'x' during any stage of questioning from me to kill me"
 
-declare -a cutils=(vim cscope exuberant-ctags git at tree valgrind xpad minicom tftp-server lftp subversion meld ssh curl rar unrar vlc tomboy nmap artha skype youtube-dl gparted synaptic wifi-radar wireshark qemu-system-x86)
+declare -a cutils=(vim cscope exuberant-ctags git at tree dconf-editor unity-tweak-tool valgrind xpad minicom tftp-server lftp subversion meld ssh curl rar unrar vlc tomboy nmap artha skype youtube-dl gparted synaptic wifi-radar wireshark qemu-system-x86)
 
 install_cutils () {
 	for i in "${cutils[@]}"
@@ -46,7 +46,7 @@ install_cutils () {
 				sudo /etc/init.d/xinetd restart
 				;;
 			"vim")
-				echo "for VIM, c10 provides dotvim and dotvimrc in snips/cubuntu. The dotvim and dotvimrc have some plugins and keymaps which become very handy for a Vimmer. If you want them, I can place them in your HOME as .vim and .vimrc replacing existing ones. Shall I install dotvim/dotvimrc?(y|n): "
+				echo -n "for VIM, c10 provides dotvim and dotvimrc in snips/cubuntu. The dotvim and dotvimrc have some plugins and keymaps which become very handy for a Vimmer. If you want them, I can place them in your HOME as .vim and .vimrc replacing existing ones. Shall I install dotvim/dotvimrc?(y|n): "
 				read answer
 				if [ "$answer" == "y" ]; then
 					echo "Installing c10 collections for vim plugins and keymaps.. Good for you!"
