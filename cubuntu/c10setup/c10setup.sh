@@ -2,7 +2,7 @@
 
 echo "Installer program for basic system utilities and libraries. Enter 'x' during any stage of questioning from me to kill me"
 
-declare -a cutils=(vim cscope exuberant-ctags git at tree dconf-editor unity-tweak-tool valgrind xpad minicom tftp-server lftp subversion meld ssh curl rar unrar vlc tomboy nmap artha skype youtube-dl gparted synaptic wifi-radar wireshark qemu-system-x86)
+declare -a cutils=(vim cscope exuberant-ctags git at tree ifstat dconf-editor unity-tweak-tool valgrind xpad minicom tftp-server lftp subversion meld ssh curl rar unrar vlc tomboy nmap artha skype youtube-dl gparted synaptic wifi-radar wireshark qemu-system-x86)
 
 install_cutils () {
 	for i in "${cutils[@]}"
