@@ -2,7 +2,16 @@
 
 echo "Installer program for basic system utilities and libraries. Enter 'x' during any stage of questioning from me to kill me"
 
-declare -a cutils=(vim cscope exuberant-ctags git at tree ifstat dconf-editor unity-tweak-tool valgrind xpad minicom tftp-server lftp subversion meld ssh curl rar unrar vlc tomboy nmap artha skype youtube-dl gparted synaptic wifi-radar wireshark qemu-system-x86)
+_install_qemu () {
+	this_machine=`uname -m`
+	[ "$this_machine" != "x86_64" ] && return
+	echo "Need to install qemu for x86_64 architecture.. But there's a whole bunch of dependencies/subdependencies to be installed first."
+	echo "Following do the job: qemu-kvm qemu-system-x86 virt-manager virt-viewer libvirt-bin"
+	sudo apt-get install qemu-kvm qemu-system-x86 virt-manager virt-viewer libvirt-bin
+	[ $? -ne 0 ] && echo "ERROR: Failed to install qemu!" && return
+}
+
+declare -a cutils=(vim cscope exuberant-ctags git at tree ifstat dconf-editor unity-tweak-tool valgrind xpad minicom tftp-server lftp subversion meld ssh curl rar unrar vlc tomboy nmap artha skype youtube-dl gparted synaptic wifi-radar wireshark qemu)
 
 install_cutils () {
 	for i in "${cutils[@]}"
@@ -24,6 +33,9 @@ install_cutils () {
 				sudo chmod a+rx /usr/local/bin/youtube-dl
 				echo "Installed youtube-dl. You might consider using the following to resolve avconv errors during downloads using youtube-dl:"
 				echo "youtube-dl -f 137+140 --prefer-ffmpeg <youtube-link>"
+				;;
+			"qemu")
+				_install_qemu
 				;;
 			"tftp-server")
 				echo "Installing tftp-server dependencies: xinetd tftpd tftp"

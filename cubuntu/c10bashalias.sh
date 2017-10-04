@@ -28,8 +28,8 @@ alias gitst='git status'
 # WAC_720 #
 alias wacu='cd /home/vchn075/ChetaN/projects/wac_720'
 
-# HFCL_WLCS #
-alias wlcs='cd /home/vchn075/ChetaN/projects/hfcl_wlcs'
+# HFCI_WLCD #
+alias wlcd='cd /home/vchn075/ChetaN/projects/hfci_wlcd'
 
 # XILU_iOVS #
 alias iovs='cd /home/vchn075/ChetaN/projects/xilu_iovs'
