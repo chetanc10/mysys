@@ -1,5 +1,3 @@
-/* find number of occurrences of a pattern in a file */
-:%s/pattern//gn
 
 /* for replacing whole pattern over entire directory tree */
 :arg **/*.c | argadd **/*.h | argdo %s/\<pattern1\>/pattern2/ge | update
