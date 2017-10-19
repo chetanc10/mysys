@@ -108,7 +108,7 @@ install_c10sh () {
 	done
 }
 
-declare -a crems=(rhythmbox* brasero shotwell totem* empathy*)
+declare -a crems=(rhythmbox brasero shotwell empathy)
 
 install_crems () {
 	for i in "${crems[@]}"
