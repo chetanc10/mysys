@@ -41,7 +41,7 @@ install_cutils () {
 				echo "Installing tftp-server dependencies: xinetd tftpd tftp"
 				sudo apt-get install xinetd tftpd tftp
 				echo "Setting up a hookup script to link a /tftpboot folder to tftp-server"
-				sudo touch /etc/xinetd.d/tftp && sudo chown vchn075 /etc/xinetd.d/tftp && sudo chmod +w /etc/xinetd.d/tftp
+				sudo touch /etc/xinetd.d/tftp && sudo chown $USER /etc/xinetd.d/tftp && sudo chmod +w /etc/xinetd.d/tftp
 				sudo echo "service tftp
 				{
 					protocol        = udp
@@ -62,10 +62,10 @@ install_cutils () {
 				read answer
 				if [ "$answer" == "y" ]; then
 					echo "Installing c10 collections for vim plugins and keymaps.. Good for you!"
-					cp -r /home/vchn075/ChetaN/snips/cubuntu/dotvim /home/vchn075/.vim
-					cp /home/vchn075/ChetaN/snips/cubuntu/dotvimrc /home/vchn075/.vimrc
+					cp -r /home/$USER/ChetaN/snips/cubuntu/dotvim /home/$USER/.vim
+					cp /home/$USER/ChetaN/snips/cubuntu/dotvimrc /home/$USER/.vimrc
 				fi
-				sudo chown vchn075 /home/vchn075/.viminfo && sudo chmod a+rw /home/vchn075/.viminfo
+				sudo chown $USER /home/$USER/.viminfo && sudo chmod a+rw /home/$USER/.viminfo
 				exit_if_requested $answer
 				do_aptget_install=1
 				;;
@@ -96,7 +96,7 @@ install_clibs () {
 
 install_c10sh () {
 	local newfile
-	for file in "/home/vchn075/ChetaN/snips/cubuntu/c10setup"/*.*
+	for file in "/home/$USER/ChetaN/snips/cubuntu/c10setup"/*.*
 	do
 		newfile=$(basename $file)
 		echo -ne "\n\n****Install '$newfile'?(y|n): "
@@ -123,7 +123,7 @@ install_crems () {
 }
 
 setup_c10bash () {
-	sed -i -e 's/\~\/\.bash_aliases/\/home\/vchn075\/ChetaN\/snips\/cubuntu\/c10bashsetup.sh/g' /home/vchn075/.bashrc
+	sed -i -e 's/\~\/\.bash_aliases/\/home\/$USER\/ChetaN\/snips\/cubuntu\/c10bashsetup.sh/g' /home/$USER/.bashrc
 }
 
 exit_if_requested () {

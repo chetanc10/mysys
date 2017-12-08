@@ -4,10 +4,10 @@ Usage="Usage: stacker.sh <src-directory> [src-dir/sub-dir]"
 
 [[ -z "$1" ]] && echo $Usage && exit -1
 
-tel=/home/vchn075/Music/miks_telugu
-hin=/home/vchn075/Music/miks_hindi
-eng=/home/vchn075/Music/miks_english
-oth=/home/vchn075/Music/miks_other
+tel=/home/$USER/Music/miks_telugu
+hin=/home/$USER/Music/miks_hindi
+eng=/home/$USER/Music/miks_english
+oth=/home/$USER/Music/miks_other
 
 echo "For stacking choices:
 	RET : do nothing and proceed to next entry

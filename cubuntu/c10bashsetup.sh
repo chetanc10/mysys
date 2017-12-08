@@ -5,8 +5,8 @@
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f /home/vchn075/ChetaN/snips/cubuntu/c10bashalias.sh ]; then
-    . /home/vchn075/ChetaN/snips/cubuntu/c10bashalias.sh
+if [ -f /home/$USER/ChetaN/snips/cubuntu/c10bashalias.sh ]; then
+    . /home/$USER/ChetaN/snips/cubuntu/c10bashalias.sh
 fi
 
 # Improve history file storage capability
