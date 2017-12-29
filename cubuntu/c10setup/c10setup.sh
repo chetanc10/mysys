@@ -11,7 +11,7 @@ _install_qemu () {
 	[ $? -ne 0 ] && echo "ERROR: Failed to install qemu!" && return
 }
 
-declare -a cutils=(vim cscope exuberant-ctags git at tree ifstat dconf-editor unity-tweak-tool valgrind xpad minicom tftp-server lftp subversion meld ssh curl rar unrar vlc tomboy nmap artha skype youtube-dl gparted synaptic wifi-radar wireshark qemu)
+declare -a cutils=(vim cscope exuberant-ctags git at tree ifstat dconf-editor unity-tweak-tool valgrind xpad minicom tftp-server lftp subversion meld ssh curl rar unrar openvpn vlc tomboy nmap artha skype youtube-dl gparted synaptic wifi-radar wireshark qemu)
 
 install_cutils () {
 	for i in "${cutils[@]}"
