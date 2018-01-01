@@ -81,6 +81,7 @@ nmap <C-x><C-Down> :cclose<CR><CR>
 nnoremap <space> i<space><Esc>
 
 " toggle diff mode inside vim session between different files multiple split windows
+" using /+f
 nnoremap <leader>f :call WdiffToggle()<cr>
 let g:wdiffState=0
 function! WdiffToggle()
@@ -90,6 +91,19 @@ function! WdiffToggle()
     else
         windo diffoff
         let g:wdiffState=0
+    endif
+endfunction
+
+" toggle 80-column limiter in any vim window
+nnoremap <leader>l :call LimiteToggle()<cr>
+let g:limiteCol=0
+function! LimiteToggle()
+    if g:limiteCol == 0
+        set colorcolumn=80
+        let g:limiteCol=1
+    else
+        set colorcolumn=
+        let g:limiteCol=0
     endif
 endfunction
 
