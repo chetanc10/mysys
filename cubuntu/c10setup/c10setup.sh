@@ -138,6 +138,13 @@ if [ "$answer" == "y" ]; then
 fi
 exit_if_requested $answer
 
+echo -ne "Trying to install basic important libs, manpages, etc. Shall I proceed?(y|n): "
+read answer
+if [ "$answer" == "y" ]; then
+	sudo apt-get install manpages-posix-dev
+fi
+exit_if_requested $answer
+
 echo -ne "\nDo you need utility Installations? (y|n): "
 read answer
 [[ "$answer" == "y" ]] && install_cutils
