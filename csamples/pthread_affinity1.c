@@ -7,6 +7,7 @@
 #include <pthread.h>
 #include <sched.h>
 #include <sys/types.h>
+#include <unistd.h>
 
 struct foo {
 	char a:4;
@@ -39,26 +40,29 @@ void affinity(int cpuid, pthread_t thread)
 void *processor_thread (void *arg)
 {
 	int m = *(int *)arg;
-	printf ("t1: %u\n", pthread_self());
+	printf ("t1: %lu\n", pthread_self());
 	while (m--) {
 		printf ("t1 ");
 		sleep (1);
 	}
+
+	return NULL;
 }
 
 void *io_thread (void *arg)
 {
 	int m = *(int *)arg;
-	printf ("t2: %u\n", pthread_self());
+	printf ("t2: %lu\n", pthread_self());
 	while (m--) {
 		printf ("t2 ");
 		sleep (1);
 	}
+
+	return NULL;
 }
 
 int main(int argc, char *argv[])
 {
-	struct foo f = {1, 3};
 	int n = 20, ret;
 	printf ("%u\n", (unsigned int)sizeof(int));
 
@@ -76,4 +80,6 @@ int main(int argc, char *argv[])
 
 	pthread_join(process_poll, NULL);
 	pthread_join(io_poll, NULL);
+
+	return 0;
 }

@@ -34,7 +34,7 @@ int main (int argc, char **argv)
 	scanf ("%d", &m);
 
 	printf ("::%lu\n", MIN (m, n) * sizeof (uint64_t));
-	printf ("::%lu\n", MIN (m, n) << (int)BITS_SHIFT (sizeof (uint64_t)));
+	printf ("::%u\n", MIN (m, n) << (int)BITS_SHIFT (sizeof (uint64_t)));
 	return 0;
 }
 

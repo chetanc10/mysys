@@ -11,7 +11,8 @@ int main()
 	uint64_t time=0;
 
 	clock_gettime(CLOCK_REALTIME, &start);
-	if(a[0] >= 'a' && a[0] <= 'z' || a[0] >= 'A' && a[0] <= 'Z');
+	if((a[0] >= 'a' && a[0] <= 'z') || \
+		(a[0] >= 'A' && a[0] <= 'Z'));
 	clock_gettime(CLOCK_REALTIME, &stop);
 	time = ((1000000000 * (stop.tv_sec - start.tv_sec)) + (stop.tv_nsec - start.tv_nsec));
 	printf("timetaken:%lu\n",time);

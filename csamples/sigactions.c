@@ -85,7 +85,7 @@ void f1 (void *sa)
 int main (int argc, char **argv)
 {
 	struct sigaction sa;
-	struct sigevent se;
+	/*struct sigevent se;*/
 
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = &segfault_handler;

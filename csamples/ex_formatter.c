@@ -7,7 +7,7 @@
 int main(int argc, char **argv)
 {
 	if (argc != 3) {
-		printf ("Usage: ./a.out <format - x|c|i|u> <input-num-or-char>")
+		printf ("Usage: ./a.out <format - x|c|i|u> <input-num-or-char>");
 		return -1;
 	}
 
@@ -15,7 +15,6 @@ int main(int argc, char **argv)
 	int32_t i32;
 	uint32_t u32, hex;
 	char ch;
-	uint8_t byte;
 
 	switch (f1) {
 		case 'x': hex = strtoul (argv[2], NULL, 16);

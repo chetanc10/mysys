@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include <sys/inotify.h>
 #include <limits.h>
+#include <err.h>
+#include <unistd.h>
 
 static void displayInotifyEvent (struct inotify_event *i)
 {

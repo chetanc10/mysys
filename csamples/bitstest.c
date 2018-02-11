@@ -20,12 +20,11 @@ typedef struct regvals {
 	uint16_t vals;
 } regvals;
 
-int main (int argc, uint8_t **argv)
+int main (int argc, char **argv)
 {
 	unsigned int i, j;
 	unsigned long long k=999999999999999999;
 	unsigned long long l=999999999;
-	double t1, t2;
 
 #if 1
 	regbits bb = {3, 7, 6};

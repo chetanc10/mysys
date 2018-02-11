@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdint.h>
+#include <stdlib.h>
+#include <ctype.h>
 
 #define USING_HDUMP_FMACRO 1
 
@@ -89,9 +91,9 @@ static inline void hexDump_8Bit (void *buf, uint32_t size, uint32_t do_cdump)
 
 #endif
 
-int main (uint8_t argc, char **argv)
+int main (int argc, char **argv)
 {
-	int len, bits, cdump;
+	int bits, cdump;
 	char buf[256] = {'a', 'b', 'c', 'd', 'e', 'f', '0', 'a', 'b', 'c', 'd', 'e', 'f', '0', 'a', 'b'};
 
 	if (argc != 3) {

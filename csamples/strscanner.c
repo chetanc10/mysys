@@ -5,13 +5,13 @@
 
 char str[] = "c0:c1:c0:c9:8b:5f, Cisco26776                      , 01,  INFRA , -74 , WPA2-PERSONAL\n06:00:12:f0:00:01, vvdnchennai                     , 01,  INFRA , -77 , WPA2-PERSONAL\nf8:52:df:14:00:83, SHYAM                           , 01,  INFRA , -76 , NONE\n00:1e:e5:7d:7e:3d, aptina                          , 06,  INFRA , -61 , WPA2-PERSONAL\n00:1f:33:27:a9:a0, BTFU_testing                    , 11,  INFRA , -84 , WPA2-PERSONAL";
 
-int main(uint8_t argc, char **argv)
+int main(int argc, char **argv)
 {
-	double startTime, endTime;
+	/*double startTime, endTime;*/
 	char a[64] = "";
 	char *ptr = str;
-	char nulls[32] = "";
-	char a1[32] = "", a2[32] = "";
+	/*char nulls[32] = "";*/
+	/*char a1[32] = "", a2[32] = "";*/
 
 	// 	startTime = getCPUTime( );
 

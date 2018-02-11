@@ -52,6 +52,8 @@ int main(int argc, char *argv[])
 		printf ("sleeping in main at iter: %d\n", count);
 		sleep (1);
 	}
+	if (count && 0)
+	    printf ("%d\n", n);
 	return 0;
 }
 

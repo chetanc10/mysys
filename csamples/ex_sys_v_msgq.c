@@ -7,6 +7,9 @@
 #include <stdint.h>
 #include <signal.h>
 #include <sys/ipc.h>
+#include <sys/types.h>
+#include <sys/msg.h>
+#include <pthread.h>
 
 #if (defined (USLEEP_TOUT)) && (USLEEP_TOUT)
 #define USLEEP(n) usleep (n)

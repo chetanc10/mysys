@@ -1,10 +1,10 @@
 
 #include <stdio.h>
+#include <unistd.h>
 #include <sys/types.h>
 
 int main (int argc, char **argv)
 {
-	int fd = 0;
 	int ret = 0;
 	char buf[8] = "";
 	char *ptr = buf;
@@ -30,7 +30,7 @@ int main (int argc, char **argv)
 		} else if (FD_ISSET (0, &readfds)) {
 			int n = read (0, ptr, 1);
 			if (*ptr != '\n') {
-				printf ("read: %c\n", *ptr);
+				printf ("read %d bytes: %c\n", n, *ptr);
 				ptr += 1;
 				if (cnt++ == 5)
 					break;

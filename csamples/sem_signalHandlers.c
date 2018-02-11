@@ -15,6 +15,8 @@ void *singsong(void *param)
 {
 	sem_wait(&s);
 	printf("\nI had to wait until your signal released me!\n");
+
+	return NULL;
 }
 
 int main()
@@ -29,4 +31,6 @@ int main()
 	pthread_t tid;
 	pthread_create(&tid, NULL, singsong, NULL);
 	pthread_exit(NULL); /* Process will exit when there are no more threads */
+
+	return 0;
 }

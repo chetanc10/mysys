@@ -16,8 +16,6 @@ void sig_handler(int signo)
 
 int main(int argc, char *argv[])
 {
-	struct sigaction sa;
-
 	if (signal(SIGINT, sig_handler) == SIG_ERR) {
 		printf("\ncan't catch SIGINT\n");
 	}

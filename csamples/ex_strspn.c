@@ -8,7 +8,7 @@
 #include <stdint.h>
 #include <string.h>
 
-int main (uint8_t argc, char **argv)
+int main (int argc, char **argv)
 {
 	int len;
 	const char acceptables[] = "ABCDEFGHIJKLMNOPQRSTWXYZabcdefghijklmnopqrstwxyz0123456789(*&^%$#@!_+)";

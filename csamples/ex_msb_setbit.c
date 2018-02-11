@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <stdarg.h>
 #include <string.h>
+#include <stdlib.h>
 
 static inline int clz32(uint32_t val)
 {
@@ -39,7 +40,7 @@ static inline int clz32(uint32_t val)
 #endif
 }
 
-int main(uint8_t argc, char **argv)
+int main(int argc, char **argv)
 {
 	if (argc == 2)
 		printf ("leading bit set @ %d\r\n", clz32(atoi(argv[1])));

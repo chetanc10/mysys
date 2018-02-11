@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-main()
+int main()
 {
 	uint8_t mac[6] = {1};
 

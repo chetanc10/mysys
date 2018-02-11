@@ -19,7 +19,7 @@ FILE *file(char *name)
 	FILE *ufp;
 
 	if (!(ufp = fopen(name, "r"))) {
-		err(1, "%s", name);
+		fwrite(name, strlen (name), 1, stdout);
 	}
 	return(ufp);
 }

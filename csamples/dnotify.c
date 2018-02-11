@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <error.h>
+#include <err.h>
 
 static volatile int event_fd;
 

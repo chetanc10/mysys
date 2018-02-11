@@ -7,6 +7,7 @@
 #include <errno.h>
 #include <sys/types.h>
 #include <sched.h>
+#include <stdlib.h>
 
 int main (int argc, char **argv)
 {
