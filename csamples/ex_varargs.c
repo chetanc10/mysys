@@ -29,12 +29,14 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
-void subby (char *name, va_list ap)
+va_list work;
+
+void subby (char *name)
 {
 	if (!strcmp ("c10", name)) {
-		printf ("c10: %d, %f\n", va_arg (ap, int), va_arg (ap, double));
+		printf ("c10: %d, %f\n", va_arg (work, int), va_arg (work, double));
 	} else {
-		printf ("c10: %f, %s\n", va_arg (ap, double), va_arg (ap, char *));
+		printf ("c10: %f, %s\n", va_arg (work, double), va_arg (work, char *));
 	}
 }
 
@@ -43,8 +45,8 @@ int print_mydb (char *name,...)
 	va_list ap;
 
 	va_start (ap, name);         /* Initialize the argument list. */
-
-	subby (name, ap);
+	va_copy (work, ap);
+	/*subby (name);*/
 	va_end (ap);                  /* Clean up. */
 
 	return 0;
@@ -54,7 +56,9 @@ int main (void)
 {
 	/* This call prints 16. */
 	print_mydb ("c10", 3, 5.23);
+	subby ("c10");
 	print_mydb ("c11", -124.43, "database?!");
+	subby ("c11");
 
 	return 0;
 }
