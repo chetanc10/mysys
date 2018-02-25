@@ -44,10 +44,14 @@ int main()
 	while(fscanf(stdin, "%s", cmd) != EOF) {
 		switch (cmd[0]) {
 			case 's':
+				/*pthread_mutex_lock (&lock);*/
 				pthread_cond_signal (&cv);
+				/*pthread_mutex_unlock (&lock);*/
 				break;
 			case 'b':
+				pthread_mutex_lock (&lock);
 				pthread_cond_broadcast (&cv);
+				pthread_mutex_unlock (&lock);
 				break;
 			case 'x':
 				goto EXIT;
