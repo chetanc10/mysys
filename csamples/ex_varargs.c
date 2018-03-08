@@ -29,36 +29,59 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
-va_list work;
+#define THREADY 1
 
-void subby (char *name)
+#if THREADY
+#define MYVARP 1
+#else
+#define MYVARP 0
+#endif
+
+va_list vobj;
+
+uint64_t varp[6];
+
+void *tsub (void *arg)
 {
-	if (!strcmp ("c10", name)) {
-		printf ("c10: %d, %f\n", va_arg (work, int), va_arg (work, double));
-	} else {
-		printf ("c10: %f, %s\n", va_arg (work, double), va_arg (work, char *));
-	}
+#if MYVARP
+	printf ("mvobj: %d, %f\n", (int)varp[0], (double)varp[1]);
+#else
+	printf ("vobj: %d, %f\n", va_arg (vobj, int), va_arg (vobj, double));
+#endif
+	return NULL;
 }
 
-int print_mydb (char *name,...)
+void print_mydb (char *name, ...)
 {
 	va_list ap;
-
-	va_start (ap, name);         /* Initialize the argument list. */
-	va_copy (work, ap);
-	/*subby (name);*/
-	va_end (ap);                  /* Clean up. */
-
-	return 0;
+	va_start (ap, name);
+#if MYVARP
+	printf ("pap: %d, %f\n", va_arg (ap, int), va_arg (ap, double));
+	va_end (ap);
+	va_start (ap, name);
+	varp[0] = (uint64_t)va_arg (ap, int);//uint64_t);
+	varp[1] = (uint64_t)va_arg (ap, double);//uint64_t);
+#else
+	va_copy (vobj, ap);
+#endif
+	/*printf ("actual var_arg: %d, %f\n", va_arg (ap, int), va_arg (ap, double));*/
+	va_end (ap);
 }
 
 int main (void)
 {
-	/* This call prints 16. */
-	print_mydb ("c10", 3, 5.23);
-	subby ("c10");
-	print_mydb ("c11", -124.43, "database?!");
-	subby ("c11");
+	pthread_t tid;
+
+	print_mydb ("b10", 6, 5.23);
+
+#if THREADY
+	printf ("THREADY!!!!!\n");
+	pthread_create (&tid, NULL, tsub, (void *)vobj);
+	pthread_join (tid, NULL);
+#else
+	tsub (NULL);
+#endif
 
 	return 0;
 }
+
