@@ -20,4 +20,5 @@ alias snips='cd /home/$USER/ChetaN/snips'
 alias gitst='git status'
 alias gitm='git checkout master'
 alias gitc='git checkout'
+alias gitp='git pull'
 
