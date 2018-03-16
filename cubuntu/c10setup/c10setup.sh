@@ -80,7 +80,7 @@ install_cutils () {
 	done
 }
 
-declare -a clibs=(libpcap-dev libncurses5-dev libelf-dev libssl-dev)
+declare -a clibs=(libpcap-dev libncurses5-dev libelf-dev libssl-dev ffmpeg libav-tools x264 x265)
 
 install_clibs () {
 	for i in "${clibs[@]}"
