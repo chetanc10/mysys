@@ -82,3 +82,6 @@ rename 's/\[.*\]//g' <file>
 
 // find 2nd process on THIS pipe
 (find /proc -type l | xargs ls -l | fgrep 'pipe:[THIS]') 2>/dev/null
+
+// download mp3 from youtube video
+youtube-dl --extract-audio --audio-format mp3 -l <youtube-link>
