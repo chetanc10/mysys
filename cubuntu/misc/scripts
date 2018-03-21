@@ -85,3 +85,6 @@ rename 's/\[.*\]//g' <file>
 
 // download mp3 from youtube video
 youtube-dl --extract-audio --audio-format mp3 -l <youtube-link>
+
+// remove remotely deleted branches and sync up on repo management
+git fetch -p; git remote prune origin; git branch --merged | grep -v "*" | xargs git branch -d
