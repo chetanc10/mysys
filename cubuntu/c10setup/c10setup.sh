@@ -62,7 +62,7 @@ install_cutils () {
 				read answer
 				if [ "$answer" == "y" ]; then
 					echo "Installing c10 collections for vim plugins and keymaps.. Good for you!"
-					cp -r /home/$USER/ChetaN/snips/cubuntu/dotvim /home/$USER/.vim
+					cp -r /home/$USER/ChetaN/snips/cubuntu/dotvim/* /home/$USER/.vim/
 					cp /home/$USER/ChetaN/snips/cubuntu/dotvimrc /home/$USER/.vimrc
 				fi
 				sudo chown $USER /home/$USER/.viminfo && sudo chmod a+rw /home/$USER/.viminfo
