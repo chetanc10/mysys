@@ -11,7 +11,7 @@ _install_qemu () {
 	[ $? -ne 0 ] && echo "ERROR: Failed to install qemu!" && return
 }
 
-declare -a cutils=(vim cscope exuberant-ctags git at tree ifstat dconf-editor unity-tweak-tool valgrind xpad minicom tftp-server lftp subversion meld ssh curl rar unrar openvpn vlc tomboy nmap artha skype youtube-dl gparted synaptic wifi-radar wireshark qemu)
+declare -a cutils=(vim cscope exuberant-ctags git at tree ifstat dconf-editor unity-tweak-tool valgrind xpad minicom tftp-server lftp subversion meld ssh curl rar unrar openvpn vlc tomboy nmap artha skype youtube-dl gparted synaptic wifi-radar wireshark qemu unity-dark-theme)
 
 install_cutils () {
 	for i in "${cutils[@]}"
@@ -68,6 +68,12 @@ install_cutils () {
 				sudo chown $USER /home/$USER/.viminfo && sudo chmod a+rw /home/$USER/.viminfo
 				exit_if_requested $answer
 				do_aptget_install=1
+				;;
+			"unity-dark-theme")
+				echo "I just need to add noobslab to ppa repo listing, update package list, install package 'arc-theme'.. Then you can use unity-tweak-tool to choose any theme"
+				sudo add-apt-repository ppa:noobslab/themes
+				sudo apt-get update
+				sudo apt-get install arc-theme
 				;;
 			*)
 				do_aptget_install=1
