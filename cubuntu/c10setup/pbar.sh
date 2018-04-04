@@ -2,10 +2,18 @@
 
 name=$1
 
+# If no process name is given, we assume pbar.sh is invoked in a manner similar to:
+# time-taking-process ; pbar.sh
+#
+# Don't use time-taking-process && pbar.sh since time-taking-process might return non-zero
+# and pbar.sh wouldn't be invoked in such case
 if [ "$name" == "" ]; then
-	echo "Usage: pbar.sh <process name>"
-	echo "process name should be as is given in cmd in terminal"
-	exit
+	#echo "Usage: pbar.sh <process name>"
+	#echo "process name should be as is given in cmd in terminal"
+	#exit -1
+	zenity --info --text "process from $name completed!" &
+	paplay /usr/share/sounds/ubuntu/stereo/phone-incoming-call.ogg
+	exit 0
 fi
 
 FALSE=0
@@ -45,3 +53,4 @@ else
 fi
 
 exit 0
+
