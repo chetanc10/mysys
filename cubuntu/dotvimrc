@@ -109,18 +109,18 @@ endfunction
 
 " select qscope modes i.e. have cscope output in cwindow or as normal output
 " inside vim
-nnoremap <c-q><c-Up> :call Qscope(1)<cr>
-nnoremap <c-q><c-Down> :call Qscope(0)<cr>
-let a:qScopeNeeded=0
-function! Qscope(qScopeNeeded)
-    if a:qScopeNeeded == 1
-		echom "qScope On"
-		set cscopequickfix=s-,c-,d-,i-,t-,e-
-    else
-		echom "qScope Off"
-		set cscopequickfix=s0,c0,d0,i0,t0,e0
-    endif
-endfunction
+" nnoremap <c-q><c-Up> :call Qscope(1)<cr>
+" nnoremap <c-q><c-Down> :call Qscope(0)<cr>
+" let a:qScopeNeeded=0
+" function! Qscope(qScopeNeeded)
+"     if a:qScopeNeeded == 1
+" 		echom "qScope On"
+" 		set cscopequickfix=s-,c-,d-,i-,t-,e-
+"     else
+" 		echom "qScope Off"
+" 		set cscopequickfix=s0,c0,d0,i0,t0,e0
+"     endif
+" endfunction
 
 " comment selected lines in visual mode
 " vmap <C-K> <S-i>//<Esc>
