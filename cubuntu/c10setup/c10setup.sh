@@ -62,6 +62,12 @@ install_cutils () {
 				read answer
 				if [ "$answer" == "y" ]; then
 					echo "Installing c10 collections for vim plugins and keymaps.. Good for you!"
+					if [ -d /home/$USER/.vim ]; then
+						echo "JFYI, I'm moving existing .vim to .myvim in home directory so that you can't lose your existing plugins/addons.. Just press ENTER now"
+						read answer
+						mv /home/$USER/.vim /home/$USER/.myvim
+					fi
+					mkdir /home/$USER/.vim
 					cp -r /home/$USER/ChetaN/snips/cubuntu/dotvim/* /home/$USER/.vim/
 					cp /home/$USER/ChetaN/snips/cubuntu/dotvimrc /home/$USER/.vimrc
 				fi
