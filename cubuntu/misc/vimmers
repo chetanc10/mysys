@@ -7,6 +7,9 @@
 :s/\s\+/ /g
 cmd mode: diw
 
+/* remove all characters after first match of Character */
+:%norm f<Character> C
+
 /* remove spaces from start of line */
 :s/^\s*//
 
