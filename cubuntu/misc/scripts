@@ -94,3 +94,7 @@ nproc --all
 (or)
 getconf _NPROCESSORS_ONLN
 
+// use bash-variable to replace a regex pattern using sed
+_replacer=$(printf '%s' "$main_replacer_variable" | sed 's/[[\.*/]/\\&/g; s/$$/\\&/; s/^^/\\&/')
+sed [-i] [-e] "s/regex/${_replacer}/g" [file or any input]
+
