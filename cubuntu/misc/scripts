@@ -93,6 +93,7 @@ git fetch -p; git remote prune origin; git branch --merged | grep -v "*" | xargs
 nproc --all
 (or)
 getconf _NPROCESSORS_ONLN
+*** honorable mention for C based approach: get_nprocs|get_nprocs_conf - man them
 
 // use bash-variable to replace a regex pattern using sed
 _replacer=$(printf '%s' "$main_replacer_variable" | sed 's/[[\.*/]/\\&/g; s/$$/\\&/; s/^^/\\&/')
