@@ -1,5 +1,8 @@
 
 #include "optimus.h"
+#include <sys/sysinfo.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 const char *usage_str = "Usage: ./optimus <test> [additional-args]\n"
 						 "Options:\n"
@@ -62,6 +65,21 @@ int main (int argc, char **argv)
 
 	for (i = 0; i < SIZEOF_ARRAY (tests); i++) {
 		if (!strcmp (tests[i].name, argv[1])) {
+			cpu_set_t cs;
+			int ncpus = get_nprocs ();
+			CPU_ZERO (&cs);
+			(ncpus > 1) ? (--ncpus) : (ncpus);
+			CPU_SET (ncpus, &cs);
+			if (0 > sched_setaffinity (getpid (), sizeof (cs), &cs)) {
+				printf ("optimus %d affinity failed. Reason: %s\n", ncpus, strerror (errno));
+			} else {
+				char scall[64];
+				printf ("new affinity: %d\n", ncpus);
+				sprintf (scall, "renice -n %d %u", -19, getpid ());
+				if (0 != system (scall)) {
+					perror ("renice: ");
+				}
+			}
 			ret = tests[i].cb (argc - 2, argv + 2);
 			break;
 		}

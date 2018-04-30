@@ -2,10 +2,14 @@
 #ifndef __OPTIMUS_H
 #define __OPTIMUS_H
 
+#define _GNU_SOURCE             /* See feature_test_macros(7) */
+#include <sched.h>
+
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 #include <time.h>
 #include <emmintrin.h>
 
