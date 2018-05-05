@@ -72,10 +72,11 @@ int main (int argc, char **argv)
 			CPU_SET (ncpus, &cs);
 			if (0 > sched_setaffinity (getpid (), sizeof (cs), &cs)) {
 				printf ("optimus %d affinity failed. Reason: %s\n", ncpus, strerror (errno));
+				return -errno;
 			} else {
 				char scall[64];
 				printf ("new affinity: %d\n", ncpus);
-				sprintf (scall, "renice -n %d %u", -19, getpid ());
+				sprintf (scall, "sudo renice -n %d %u", -19, getpid ());
 				if (0 != system (scall)) {
 					perror ("renice: ");
 				}

@@ -13,7 +13,7 @@
 #include <time.h>
 #include <emmintrin.h>
 
-#define USING_CLOCK_LIB_API 0
+#define USING_CLOCK_LIB_API 1
 
 #if USING_CLOCK_LIB_API
 #define clock clock
