@@ -102,3 +102,6 @@ sed [-i] [-e] "s/regex/${_replacer}/g" [file or any input]
 // find a pattern from selected file types recursively
 find ./ \( -iname "*.h" -or -iname "*.c" -or -iname "*.S" -or -iname "*.s" -or -iname "*.asm" \) -print0 | xargs -0 grep -sRinI "word"
 
+// make '    unwantedword     wantedword' as 'wantedword'
+sed -r 's/^([^ ]* ){2}//' file
+cut -f3- -d" " file
