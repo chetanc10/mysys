@@ -269,3 +269,5 @@ select using visual mode and put lines to other file - :'<,'>diffput
 /*remove from matched pattern to EOL*/
 :s/{pattern}.*//
 
+/*remove all lines that do not contain pattern*/
+:v/pattern/d
