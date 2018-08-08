@@ -3,20 +3,20 @@
 :arg **/*.c | argadd **/*.h | argdo %s/\<pattern1\>/pattern2/ge | update
 :arg **/*.[ch] | argdo %s/\<pattern1\>/pattern2/ge | update
 
-/* remove unwanted whitespaces/tabspaces from the line */
+/* delete unwanted whitespaces/tabspaces from the line */
 :s/\s\+/ /g
 cmd mode: diw
 
-/* remove all characters after first match of Character */
+/* delete all characters after first match of Character */
 :%norm f<Character> C
 
-/* remove spaces from start of line */
+/* delete spaces from start of line */
 :s/^\s*//
 
-/* remove spaces from end of line */
+/* delete spaces from end of line */
 :s/\s*$//
 
-/* remove last character from line */
+/* delete last character from line */
 :s/. *$//
 
 /* advance replacement with func calls and respective args */
@@ -49,29 +49,29 @@ give "d'a"/"y'a" at end line to del/yank(copy) from "ma"rked line to end line
 /* add common text at End of line */
 :s/$/foo
 
-/* remove last number of characters in lines */
+/* delete last number of characters in lines */
 :s/.\{<num>}$//
 
-/* remove first number of characters in lines */
+/* delete first number of characters in lines */
 :s/^.\{<num>}//
 
-/* remove all lines that begin with a character */
+/* delete all lines that begin with a character */
 :g/^<char>/d
 
-/*remove lines with a pattern*/
+/*delete lines with a pattern*/
 :g/<pattern>/d
 
-/* remove unwanted number of trailing words/patterns */
+/* delete unwanted number of trailing words/patterns */
 /* " ." skips a column of words */
 :s/ .*//
 
-/* remove last word ( + spaces before word ) from line */
+/* delete last word ( + spaces before word ) from line */
 :s/\s*\w\+\s*$//
 
-/* remove word between 2 spaces */
+/* delete word between 2 spaces */
 :s/\s\+\w\+\s*//
 
-/* remove first words and space(including any first special chars<spec-char> in lines) */
+/* delete first words and space(including any first special chars<spec-char> in lines) */
 :s/<spec-char>\w\+\s*//
 
 /* move split window to right(circular)? */
@@ -126,7 +126,7 @@ Shift-c
 /*exit diff mode inside vim*/
 :diffoff
 
-/*remove file when entire project folder opened in vim and NERDtree is installed*/
+/*delete file when entire project folder opened in vim and NERDtree is installed*/
 1. cursor placed on file name.
 2. press m (quick fix window appears with add/modify/delete,etc options)
 3. press d
@@ -209,7 +209,7 @@ zf
 /*delete fold*/
 zd
 
-/*remove from match-pattern till endOfLine*/
+/*delete from match-pattern till endOfLine*/
 :s/{pattern}.*//
 
 /*delete lines containing a pattern*/
@@ -266,8 +266,8 @@ select using visual mode and put lines to other file - :'<,'>diffput
 /*yank all lines matching pattern*/
 :g/^match/yank A
 
-/*remove from matched pattern to EOL*/
+/*delete from matched pattern to EOL*/
 :s/{pattern}.*//
 
-/*remove all lines that do not contain pattern*/
+/*delete all lines that do not contain pattern*/
 :v/pattern/d
