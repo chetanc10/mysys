@@ -24,6 +24,7 @@ const char *usage_str = "Usage: ./optimus <test> [additional-args]\n"
 						 "\tquotient\n"
 						 "\tmcopy\n"
 						 "\tcache\n"
+						 "\tparsebuf\n"
 						 ;
 
 typedef int (*test_cb_t)(uint8_t argc, char **argv);
@@ -56,6 +57,7 @@ int main (int argc, char **argv)
 		{"quotient", test_quotient},
 		{"mcopy", test_mcopy},
 		{"cache", test_cache},
+		{"parsebuf", test_parsebuf},
 	};
 
 	if (argc < 2) {

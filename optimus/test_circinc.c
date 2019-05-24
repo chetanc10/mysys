@@ -36,10 +36,10 @@ int test_circinc (uint8_t argc, char **argv)
 		circinc_func_t func;
 	};
 	struct circinc_mode circinc_modes[] = {
-		{"circinc_ift", circinc_if},
+		{"circinc_bit", circinc_bits},
 		{"circinc_cm1", circinc_cm1},
 		{"circinc_cm2", circinc_cm2},
-		{"circinc_bit", circinc_bits},
+		{"circinc_ift", circinc_if},
 		{"circinc_mod", circinc_mod},
 	};
 	uint32_t i, j, fidx;
@@ -61,7 +61,7 @@ int test_circinc (uint8_t argc, char **argv)
 		x = atoi (argv[0]);
 		for (j = 0; j < 10; j++) {
 			start = clock ();
-			for (i = 0; i < 10000000; i++)
+			for (i = 0; i < 100000000; i++)
 				x = func (x, lmt);
 			end = clock ();
 			time_spent[j] = (end - start);

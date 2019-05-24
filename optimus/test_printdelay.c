@@ -27,15 +27,15 @@ int test_printdelay (uint8_t argc, char **argv)
 	uint32_t i, j, fidx;
 	char *type;
 	clock_t start, end;
-	double time_spent[10], total_time_spent;
+	double time_spent[1000], total_time_spent;
 	printdelay_func_t func;
 
 	for (fidx = 0; fidx < SIZEOF_ARRAY (printdelay_modes); fidx++) {
 		func = printdelay_modes[fidx].func;
 		type = printdelay_modes[fidx].type;
-		for (j = 0; j < 5; j++) {
+		for (j = 0; j < 1000; j++) {
 			start = clock ();
-			for (i = 0; i < 5; i++)
+			for (i = 0; i < 1000; i++)
 				func ();
 			end = clock ();
 			time_spent[j] = (end - start);
