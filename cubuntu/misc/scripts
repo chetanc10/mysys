@@ -105,3 +105,6 @@ find ./ \( -iname "*.h" -or -iname "*.c" -or -iname "*.S" -or -iname "*.s" -or -
 // make '    unwantedword     wantedword' as 'wantedword'
 sed -r 's/^([^ ]* ){2}//' file
 cut -f3- -d" " file
+
+// find and list all files from a FOLDER having a PATTERN
+grep --include=\*.{c,h} -rnw FOLDER -ile "PATTERN"
