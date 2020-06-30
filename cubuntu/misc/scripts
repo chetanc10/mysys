@@ -108,3 +108,7 @@ cut -f3- -d" " file
 
 // find and list all files from a FOLDER having a PATTERN
 grep --include=\*.{c,h} -rnw FOLDER -ile "PATTERN"
+
+// remove a manually installed kernel from ubuntu
+locate -b -e 4.18.12 | xargs rm -rf
+
