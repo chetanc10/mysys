@@ -271,3 +271,9 @@ select using visual mode and put lines to other file - :'<,'>diffput
 
 /*delete all lines that do not contain pattern*/
 :v/pattern/d
+
+/*match complete line only upto first occurrence of pattern*/
+:^.\{-}pattern
+:\<first-word-to-start-line-match>.\{-}pattern
+:\<first-word-to-start-line-match>.\{-}pattern.*<last-word-to-stop-line-match>
+
